@@ -19,3 +19,12 @@ DerivedData
 
 #CocoaPods
 Pods
+
+# junk file
+*.swp
+*.swo
+*~
+.#*
+\#*\#
+*.log
+
