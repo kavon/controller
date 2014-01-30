@@ -12,7 +12,7 @@
 		89191221189601F10039CE3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89191220189601F10039CE3D /* UIKit.framework */; };
 		89191227189601F10039CE3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89191225189601F10039CE3D /* InfoPlist.strings */; };
 		89191229189601F10039CE3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89191228189601F10039CE3D /* main.m */; };
-		8919122D189601F10039CE3D /* psuAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8919122C189601F10039CE3D /* psuAppDelegate.m */; };
+		8919122D189601F10039CE3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8919122C189601F10039CE3D /* AppDelegate.m */; };
 		8919122F189601F10039CE3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8919122E189601F10039CE3D /* Images.xcassets */; };
 		89191236189601F10039CE3D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89191235189601F10039CE3D /* XCTest.framework */; };
 		89191237189601F10039CE3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8919121C189601F10039CE3D /* Foundation.framework */; };
@@ -40,8 +40,8 @@
 		89191226189601F10039CE3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89191228189601F10039CE3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8919122A189601F10039CE3D /* Ringalevio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ringalevio-Prefix.pch"; sourceTree = "<group>"; };
-		8919122B189601F10039CE3D /* psuAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = psuAppDelegate.h; sourceTree = "<group>"; };
-		8919122C189601F10039CE3D /* psuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = psuAppDelegate.m; sourceTree = "<group>"; };
+		8919122B189601F10039CE3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8919122C189601F10039CE3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8919122E189601F10039CE3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		89191234189601F10039CE3D /* RingalevioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RingalevioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89191235189601F10039CE3D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -107,8 +107,8 @@
 		89191222189601F10039CE3D /* Ringalevio */ = {
 			isa = PBXGroup;
 			children = (
-				8919122B189601F10039CE3D /* psuAppDelegate.h */,
-				8919122C189601F10039CE3D /* psuAppDelegate.m */,
+				8919122B189601F10039CE3D /* AppDelegate.h */,
+				8919122C189601F10039CE3D /* AppDelegate.m */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
 			);
@@ -240,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89191229189601F10039CE3D /* main.m in Sources */,
-				8919122D189601F10039CE3D /* psuAppDelegate.m in Sources */,
+				8919122D189601F10039CE3D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +443,7 @@
 				89191247189601F10039CE3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		89191248189601F10039CE3D /* Build configuration list for PBXNativeTarget "RingalevioTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +452,7 @@
 				8919124A189601F10039CE3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
