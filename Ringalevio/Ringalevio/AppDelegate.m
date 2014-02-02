@@ -7,16 +7,23 @@
 //
 
 #import "AppDelegate.h"
+#import "UIKit/UIWebView.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor orangeColor];
     
+    UIWebView *webView = [[UIWebView alloc] initWithFrame: self.window.bounds];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://google.com"]]];
+    [self.window addSubview:webView];
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
