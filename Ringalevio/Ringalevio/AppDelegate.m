@@ -8,9 +8,13 @@
 
 #import "AppDelegate.h"
 #import "UIKit/UIWebView.h"
+#import <Mapbox/Mapbox.h>
 
 @implementation AppDelegate
 
+
+ 
+ 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -26,6 +30,12 @@
     
     return YES;
 }
+
+
+//TODO: learn how to code
+//TODO: test out mapbox (get map to display)
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
