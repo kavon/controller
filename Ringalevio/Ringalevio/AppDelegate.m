@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "UIKit/UIWebView.h"
-#import <Mapbox/Mapbox.h>
 
 @implementation AppDelegate
 
@@ -30,10 +29,6 @@
     
     return YES;
 }
-
-
-//TODO: learn how to code
-//TODO: test out mapbox (get map to display)
 
 
 
