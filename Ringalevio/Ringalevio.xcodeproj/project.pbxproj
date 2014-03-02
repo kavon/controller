@@ -19,6 +19,11 @@
 		89191238189601F10039CE3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89191220189601F10039CE3D /* UIKit.framework */; };
 		89191240189601F10039CE3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8919123E189601F10039CE3D /* InfoPlist.strings */; };
 		89191242189601F10039CE3D /* RingalevioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89191241189601F10039CE3D /* RingalevioTests.m */; };
+		891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3F9D18C28DCA000BC197 /* GCDAsyncSocket.m */; };
+		891C3FA318C28DCA000BC197 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3F9F18C28DCA000BC197 /* GCDAsyncUdpSocket.m */; };
+		891C3FAC18C29CDC000BC197 /* GimbalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAB18C29CDC000BC197 /* GimbalController.m */; };
+		891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAE18C29CF7000BC197 /* LaserController.m */; };
+		891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FB118C2A323000BC197 /* DeviceMessenger.m */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
 		C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D718B22C2100C189D5 /* QuartzCore.framework */; };
 		C24D45DA18B22C3400C189D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D918B22C3400C189D5 /* libsqlite3.dylib */; };
@@ -52,6 +57,16 @@
 		8919123D189601F10039CE3D /* RingalevioTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RingalevioTests-Info.plist"; sourceTree = "<group>"; };
 		8919123F189601F10039CE3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89191241189601F10039CE3D /* RingalevioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RingalevioTests.m; sourceTree = "<group>"; };
+		891C3F9C18C28DCA000BC197 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Network/GCDAsyncSocket.h; sourceTree = "<group>"; };
+		891C3F9D18C28DCA000BC197 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Network/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		891C3F9E18C28DCA000BC197 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Network/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		891C3F9F18C28DCA000BC197 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = Network/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		891C3FAA18C29CDC000BC197 /* GimbalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GimbalController.h; path = Network/GimbalController.h; sourceTree = "<group>"; };
+		891C3FAB18C29CDC000BC197 /* GimbalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GimbalController.m; path = Network/GimbalController.m; sourceTree = "<group>"; };
+		891C3FAD18C29CF7000BC197 /* LaserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserController.h; path = Network/LaserController.h; sourceTree = "<group>"; };
+		891C3FAE18C29CF7000BC197 /* LaserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaserController.m; path = Network/LaserController.m; sourceTree = "<group>"; };
+		891C3FB018C2A323000BC197 /* DeviceMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceMessenger.h; path = Network/DeviceMessenger.h; sourceTree = "<group>"; };
+		891C3FB118C2A323000BC197 /* DeviceMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceMessenger.m; path = Network/DeviceMessenger.m; sourceTree = "<group>"; };
 		C24D45D518B22C1300C189D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C24D45D718B22C2100C189D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C24D45D918B22C3400C189D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -123,6 +138,7 @@
 		89191222189601F10039CE3D /* Ringalevio */ = {
 			isa = PBXGroup;
 			children = (
+				891C3F9718C28DAB000BC197 /* Network */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
@@ -158,6 +174,23 @@
 				8919123E189601F10039CE3D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		891C3F9718C28DAB000BC197 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				891C3F9C18C28DCA000BC197 /* GCDAsyncSocket.h */,
+				891C3F9D18C28DCA000BC197 /* GCDAsyncSocket.m */,
+				891C3F9E18C28DCA000BC197 /* GCDAsyncUdpSocket.h */,
+				891C3F9F18C28DCA000BC197 /* GCDAsyncUdpSocket.m */,
+				891C3FAA18C29CDC000BC197 /* GimbalController.h */,
+				891C3FAB18C29CDC000BC197 /* GimbalController.m */,
+				891C3FAD18C29CF7000BC197 /* LaserController.h */,
+				891C3FAE18C29CF7000BC197 /* LaserController.m */,
+				891C3FB018C2A323000BC197 /* DeviceMessenger.h */,
+				891C3FB118C2A323000BC197 /* DeviceMessenger.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
+				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				89191229189601F10039CE3D /* main.m in Sources */,
+				891C3FA318C28DCA000BC197 /* GCDAsyncUdpSocket.m in Sources */,
+				891C3FAC18C29CDC000BC197 /* GimbalController.m in Sources */,
 				8919122D189601F10039CE3D /* AppDelegate.m in Sources */,
+				891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
