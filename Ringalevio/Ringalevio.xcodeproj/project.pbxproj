@@ -28,6 +28,10 @@
 		C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D718B22C2100C189D5 /* QuartzCore.framework */; };
 		C24D45DA18B22C3400C189D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D918B22C3400C189D5 /* libsqlite3.dylib */; };
 		C24D45DC18B22C4400C189D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45DB18B22C4400C189D5 /* libz.dylib */; };
+		C2A648DB18D0C34C00D7F1A1 /* Storyboard_main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */; };
+		C2A648E118D0FDB500D7F1A1 /* AddMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A648E018D0FDB500D7F1A1 /* AddMissionViewController.m */; };
+		C2A648E418D0FE8800D7F1A1 /* MissionControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */; };
+		C2A648E718D107B100D7F1A1 /* MissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A648E618D107B100D7F1A1 /* MissionItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,13 @@
 		C24D45D718B22C2100C189D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C24D45D918B22C3400C189D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C24D45DB18B22C4400C189D5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_main.storyboard; sourceTree = "<group>"; };
+		C2A648DF18D0FDB500D7F1A1 /* AddMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMissionViewController.h; path = ../AddMissionViewController.h; sourceTree = "<group>"; };
+		C2A648E018D0FDB500D7F1A1 /* AddMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMissionViewController.m; path = ../AddMissionViewController.m; sourceTree = "<group>"; };
+		C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionControlViewController.h; sourceTree = "<group>"; };
+		C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionControlViewController.m; sourceTree = "<group>"; };
+		C2A648E518D107B100D7F1A1 /* MissionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItem.h; sourceTree = "<group>"; };
+		C2A648E618D107B100D7F1A1 /* MissionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +150,15 @@
 			isa = PBXGroup;
 			children = (
 				891C3F9718C28DAB000BC197 /* Network */,
+				C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */,
+				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
+				C2A648DF18D0FDB500D7F1A1 /* AddMissionViewController.h */,
+				C2A648E018D0FDB500D7F1A1 /* AddMissionViewController.m */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
+				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
+				C2A648E618D107B100D7F1A1 /* MissionItem.m */,
+				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
 			);
@@ -269,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89191227189601F10039CE3D /* InfoPlist.strings in Resources */,
+				C2A648DB18D0C34C00D7F1A1 /* Storyboard_main.storyboard in Resources */,
 				8919122F189601F10039CE3D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,10 +310,13 @@
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				89191229189601F10039CE3D /* main.m in Sources */,
+				C2A648E418D0FE8800D7F1A1 /* MissionControlViewController.m in Sources */,
 				891C3FA318C28DCA000BC197 /* GCDAsyncUdpSocket.m in Sources */,
+				C2A648E718D107B100D7F1A1 /* MissionItem.m in Sources */,
 				891C3FAC18C29CDC000BC197 /* GimbalController.m in Sources */,
 				8919122D189601F10039CE3D /* AppDelegate.m in Sources */,
 				891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */,
+				C2A648E118D0FDB500D7F1A1 /* AddMissionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ringalevio/Ringalevio-Prefix.pch";
 				INFOPLIST_FILE = "Ringalevio/Ringalevio-Info.plist";
@@ -429,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ringalevio/Ringalevio-Prefix.pch";
 				INFOPLIST_FILE = "Ringalevio/Ringalevio-Info.plist";
