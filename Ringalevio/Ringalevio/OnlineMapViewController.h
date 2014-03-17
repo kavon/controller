@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddMapViewController : UIViewController
+@interface OnlineMapViewController : UIViewController
 
 @end

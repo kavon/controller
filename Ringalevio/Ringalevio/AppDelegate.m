@@ -10,8 +10,6 @@
 #import "UIKit/UIWebView.h"
 #import "Network/GCDAsyncUdpSocket.h"
 
-#import "AddMapViewController.h"
-
 @implementation AppDelegate
 
 
@@ -19,36 +17,8 @@
  
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    
-    NSMutableArray *viewControllers = [NSMutableArray array];
-    
-    for (NSString *typeString in [NSArray arrayWithObjects:@"AddMap", nil])
-    {
-        Class ViewControllerClass = NSClassFromString([NSString stringWithFormat:@"%@ViewController", [typeString capitalizedString]]);
-        
-        UIViewController *viewController = [[ViewControllerClass alloc] initWithNibName:nil bundle:nil];
-        
-        viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ Layer", [typeString capitalizedString]]
-                                                                  image:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", typeString]]
-                                                                    tag:0];
-        
-        [viewControllers addObject:viewController];
-    }
-    
-    tabBarController.viewControllers = viewControllers;
-    
-    self.window.rootViewController = tabBarController;
-    
-    [self.window makeKeyAndVisible];
-    
-    return YES;
-    
     return YES;
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

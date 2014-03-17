@@ -24,7 +24,7 @@
 		891C3FAC18C29CDC000BC197 /* GimbalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAB18C29CDC000BC197 /* GimbalController.m */; };
 		891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAE18C29CF7000BC197 /* LaserController.m */; };
 		891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FB118C2A323000BC197 /* DeviceMessenger.m */; };
-		C21FF08D18D22E420083F688 /* AddMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21FF08C18D22E420083F688 /* AddMapViewController.m */; };
+		C21FF08D18D22E420083F688 /* OnlineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21FF08C18D22E420083F688 /* OnlineMapViewController.m */; };
 		C21FF08F18D22E9A0083F688 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21FF08E18D22E9A0083F688 /* Mapbox.framework */; };
 		C21FF09118D22F800083F688 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C21FF09018D22F800083F688 /* Mapbox.bundle */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
@@ -74,8 +74,8 @@
 		891C3FAE18C29CF7000BC197 /* LaserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaserController.m; path = Network/LaserController.m; sourceTree = "<group>"; };
 		891C3FB018C2A323000BC197 /* DeviceMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceMessenger.h; path = Network/DeviceMessenger.h; sourceTree = "<group>"; };
 		891C3FB118C2A323000BC197 /* DeviceMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceMessenger.m; path = Network/DeviceMessenger.m; sourceTree = "<group>"; };
-		C21FF08B18D22E420083F688 /* AddMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMapViewController.h; sourceTree = "<group>"; };
-		C21FF08C18D22E420083F688 /* AddMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMapViewController.m; sourceTree = "<group>"; };
+		C21FF08B18D22E420083F688 /* OnlineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMapViewController.h; sourceTree = "<group>"; };
+		C21FF08C18D22E420083F688 /* OnlineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMapViewController.m; sourceTree = "<group>"; };
 		C21FF08E18D22E9A0083F688 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = ../../../../..; sourceTree = "<group>"; };
 		C21FF09018D22F800083F688 /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = ../../Mapbox.bundle; sourceTree = "<group>"; };
 		C24D45D518B22C1300C189D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -170,8 +170,8 @@
 				C2A648E618D107B100D7F1A1 /* MissionItem.m */,
 				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
-				C21FF08B18D22E420083F688 /* AddMapViewController.h */,
-				C21FF08C18D22E420083F688 /* AddMapViewController.m */,
+				C21FF08B18D22E420083F688 /* OnlineMapViewController.h */,
+				C21FF08C18D22E420083F688 /* OnlineMapViewController.m */,
 				89191223189601F10039CE3D /* Supporting Files */,
 			);
 			path = Ringalevio;
@@ -320,7 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C21FF08D18D22E420083F688 /* AddMapViewController.m in Sources */,
+				C21FF08D18D22E420083F688 /* OnlineMapViewController.m in Sources */,
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				89191229189601F10039CE3D /* main.m in Sources */,

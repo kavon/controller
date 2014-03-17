@@ -6,15 +6,15 @@
 //
 //
 
-#import "AddMapViewController.h"
+#import "OnlineMapViewController.h"
 
 #import <Mapbox/Mapbox.h>
 
-@interface AddMapViewController ()
+@interface OnlineMapViewController ()
 
 @end
 
-@implementation AddMapViewController
+@implementation OnlineMapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +30,7 @@
     {
         [super viewDidLoad];
         
-        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"examples.map-z2effxa8"];
+        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.hhn6gmfi"];
         
         RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:tileSource];
         
