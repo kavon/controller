@@ -30,7 +30,7 @@
     {
         [super viewDidLoad];
         
-        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.hhn6gmfi"];
+        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
         
         RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:tileSource];
         
