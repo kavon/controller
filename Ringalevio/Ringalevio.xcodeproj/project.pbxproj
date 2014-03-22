@@ -26,6 +26,9 @@
 		891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAE18C29CF7000BC197 /* LaserController.m */; };
 		891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FB118C2A323000BC197 /* DeviceMessenger.m */; };
 		89DF249D18D51D100082A63B /* AddMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF249C18D51D100082A63B /* AddMissionViewController.m */; };
+		89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */; };
+		89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EAA97F18DDF3820029FA8F /* Mapbox.framework */; };
+		89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 89EAA98218DDF4250029FA8F /* Mapbox.bundle */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
 		C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D718B22C2100C189D5 /* QuartzCore.framework */; };
 		C24D45DA18B22C3400C189D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D918B22C3400C189D5 /* libsqlite3.dylib */; };
@@ -76,6 +79,10 @@
 		891C3FB118C2A323000BC197 /* DeviceMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceMessenger.m; path = Network/DeviceMessenger.m; sourceTree = "<group>"; };
 		89DF249B18D51D100082A63B /* AddMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMissionViewController.h; sourceTree = "<group>"; };
 		89DF249C18D51D100082A63B /* AddMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMissionViewController.m; sourceTree = "<group>"; };
+		89EAA97C18DDF28B0029FA8F /* OnlineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMapViewController.h; sourceTree = "<group>"; };
+		89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMapViewController.m; sourceTree = "<group>"; };
+		89EAA97F18DDF3820029FA8F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Frameworks/Mapbox.framework; sourceTree = "<group>"; };
+		89EAA98218DDF4250029FA8F /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = Frameworks/Mapbox.framework/Versions/A/Resources/Mapbox.bundle; sourceTree = SOURCE_ROOT; };
 		C24D45D518B22C1300C189D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C24D45D718B22C2100C189D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C24D45D918B22C3400C189D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -95,6 +102,7 @@
 				C24D45DC18B22C4400C189D5 /* libz.dylib in Frameworks */,
 				C24D45DA18B22C3400C189D5 /* libsqlite3.dylib in Frameworks */,
 				C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */,
+				89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */,
 				C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */,
 				8919121F189601F10039CE3D /* CoreGraphics.framework in Frameworks */,
 				89191221189601F10039CE3D /* UIKit.framework in Frameworks */,
@@ -137,6 +145,7 @@
 		8919121B189601F10039CE3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89EAA97F18DDF3820029FA8F /* Mapbox.framework */,
 				C24D45DB18B22C4400C189D5 /* libz.dylib */,
 				C24D45D918B22C3400C189D5 /* libsqlite3.dylib */,
 				C24D45D718B22C2100C189D5 /* QuartzCore.framework */,
@@ -152,6 +161,9 @@
 		89191222189601F10039CE3D /* Ringalevio */ = {
 			isa = PBXGroup;
 			children = (
+				89EAA98218DDF4250029FA8F /* Mapbox.bundle */,
+				89EAA97C18DDF28B0029FA8F /* OnlineMapViewController.h */,
+				89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */,
 				8909202F18D63EBC00D03CF4 /* SensorViewController.m */,
 				8909203018D63EBC00D03CF4 /* SensorViewController.h */,
 				89DF249B18D51D100082A63B /* AddMissionViewController.h */,
@@ -291,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */,
 				89191227189601F10039CE3D /* InfoPlist.strings in Resources */,
 				C2A648DB18D0C34C00D7F1A1 /* Storyboard_main.storyboard in Resources */,
 				8919122F189601F10039CE3D /* Images.xcassets in Resources */,
@@ -314,6 +327,7 @@
 			files = (
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
+				89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */,
 				89191229189601F10039CE3D /* main.m in Sources */,
 				C2A648E418D0FE8800D7F1A1 /* MissionControlViewController.m in Sources */,
 				891C3FA318C28DCA000BC197 /* GCDAsyncUdpSocket.m in Sources */,
@@ -442,6 +456,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ringalevio/Ringalevio-Prefix.pch";
 				INFOPLIST_FILE = "Ringalevio/Ringalevio-Info.plist";
@@ -457,6 +475,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ringalevio/Ringalevio-Prefix.pch";
 				INFOPLIST_FILE = "Ringalevio/Ringalevio-Info.plist";
