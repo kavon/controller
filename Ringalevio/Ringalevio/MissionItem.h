@@ -11,7 +11,7 @@
 @interface MissionItem : NSObject
 
 // identifying name of mission
-@property (readonly) NSString *missionName;
+@property NSString *missionName;
 
 // URL of health website (maybe make a global one if it never changes)
 @property NSString *missionHealthURL;

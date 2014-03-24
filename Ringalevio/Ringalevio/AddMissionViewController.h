@@ -11,5 +11,5 @@
 #import "MissionItem.h"
 
 @interface AddMissionViewController : UIViewController
-
+@property  MissionItem *mi;
 @end

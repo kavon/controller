@@ -8,6 +8,7 @@
 
 #import "MissionControlViewController.h"
 #import "MissionItem.h"
+#import "AddMissionViewController.h"
 
 @interface MissionControlViewController ()
 
@@ -24,6 +25,12 @@
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     // code here to return to this panel with sent values and such
+     AddMissionViewController *source = [segue sourceViewController];
+    MissionItem *item = source.mi;
+    if (item != nil) {
+        [self.missionArray addObject:item];
+        [self.tableView reloadData];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,7 +47,6 @@
     [super viewDidLoad];
     
     self.missionArray = [[NSMutableArray alloc] init];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
