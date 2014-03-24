@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Mapbox/Mapbox.h>
+#import "MissionItem.h"
 
 @interface AddMissionViewController : UIViewController
 

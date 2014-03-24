@@ -10,6 +10,11 @@
 
 @interface AddMissionViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *missionName;
+@property (weak, nonatomic) IBOutlet UITextField *missionHealthURL;
+@property (weak, nonatomic) IBOutlet UITextField *missionLatitude;
+@property (weak, nonatomic) IBOutlet UITextField *missionLongitude;
+
 @end
 
 @implementation AddMissionViewController
