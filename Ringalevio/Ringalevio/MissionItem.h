@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mapbox/Mapbox.h>
 
 @interface MissionItem : NSObject
 
@@ -16,9 +17,12 @@
 // URL of health website (maybe make a global one if it never changes)
 @property NSString *missionHealthURL;
 
-//setter for private lat and long
--(void)setMissionLongitude:(NSNumber *)missionLong;
+// mission longitude and latitude center (for maps? different params if need be)
+@property CLLocationCoordinate2D missionNortheast;
+@property CLLocationCoordinate2D missionSouthwest;
 
--(void)setMissionLatitude:(NSNumber *)missionLat;
+// Mapbox cache system
+@property RMTileCache *cache;
+
 
 @end

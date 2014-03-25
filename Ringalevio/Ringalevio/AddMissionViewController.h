@@ -11,5 +11,9 @@
 #import "MissionItem.h"
 
 @interface AddMissionViewController : UIViewController
+
+// method for when cache button is pressed
+- (IBAction)cacheButtonPress:(id *)sender;
+
 @property  MissionItem *mi;
 @end

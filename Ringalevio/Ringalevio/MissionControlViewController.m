@@ -14,6 +14,7 @@
 
 // array to hold mission items
 @property NSMutableArray *missionArray;
+@property BOOL saveSuccess;
 
 @end
 
@@ -38,6 +39,10 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
+        // restore array from archive
+        NSString *archivePath = [self applicationDocumentsDirectory];
+        self.missionArray = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
     }
     return self;
 }
@@ -138,6 +143,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+ 
+
+ 
 }
 
  */
@@ -151,6 +159,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // table touch "click" code goes here: probably to go to maps (op1)
+}
+
+
+// Apple-provided method to get document's directory of device
+- (NSString *)applicationDocumentsDirectory {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
+// delegate command on app-close
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    do
+    {
+    // save archive to file
+    NSString *archivePath = [self applicationDocumentsDirectory];
+    _saveSuccess = [NSKeyedArchiver archiveRootObject:_missionArray toFile:archivePath];
+    } while (_saveSuccess != true);
 }
 
 @end
