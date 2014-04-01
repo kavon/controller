@@ -113,10 +113,10 @@
 // constructor for 2d coordinate for cache system
 CLLocationCoordinate2D makeCoordinate (double longitude_i, double latitude_i)
 {
-    CLLocationCoordinate2D missionNortheast_i;
-    missionNortheast_i.longitude = longitude_i;
-    missionNortheast_i.latitude = latitude_i;
-    return missionNortheast_i;
+    CLLocationCoordinate2D coord_i;
+    coord_i.longitude = longitude_i;
+    coord_i.latitude = latitude_i;
+    return coord_i;
 }
 
 @end

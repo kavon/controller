@@ -26,12 +26,19 @@
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     // code here to return to this panel with sent values and such
-     AddMissionViewController *source = [segue sourceViewController];
+    AddMissionViewController *source = [segue sourceViewController];
     MissionItem *item = source.mi;
     if (item != nil) {
         [self.missionArray addObject:item];
         [self.tableView reloadData];
     }
+}
+
+- (void) prepareForMapSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // only proceed if done button calls this
+    if (sender != self.tableView) return;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,9 +47,6 @@
     if (self) {
         // Custom initialization
         
-        // restore array from archive
-        NSString *archivePath = [self applicationDocumentsDirectory];
-        self.missionArray = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
     }
     return self;
 }
@@ -52,6 +56,15 @@
     [super viewDidLoad];
     
     self.missionArray = [[NSMutableArray alloc] init];
+    
+    // restore array from archive
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *fullFileName = [NSString stringWithFormat:@"%@/missionArray", docDir];
+    self.missionArray = [NSKeyedUnarchiver unarchiveObjectWithFile:fullFileName];
+    
+    [self.tableView reloadData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -161,23 +174,17 @@
     // table touch "click" code goes here: probably to go to maps (op1)
 }
 
-
-// Apple-provided method to get document's directory of device
-- (NSString *)applicationDocumentsDirectory {
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    return basePath;
-}
-
 // delegate command on app-close
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)applicationDidEnterBackground
 {
     do
     {
-    // save archive to file
-    NSString *archivePath = [self applicationDocumentsDirectory];
-    _saveSuccess = [NSKeyedArchiver archiveRootObject:_missionArray toFile:archivePath];
+    // save archive to file using archiver
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSString *fullFileName = [NSString stringWithFormat:@"%@/missionArray", docDir];
+        _saveSuccess = [NSKeyedArchiver archiveRootObject:_missionArray toFile:fullFileName];
+        
     } while (_saveSuccess != true);
 }
 

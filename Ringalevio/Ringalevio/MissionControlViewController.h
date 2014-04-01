@@ -13,4 +13,7 @@
 // custom unwind command to return from a different view
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
+// save controls
+- (void)applicationDidEnterBackground;
+
 @end

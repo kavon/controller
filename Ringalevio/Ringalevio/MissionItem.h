@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Mapbox/Mapbox.h>
+#import <MapKit/MapKit.h>
 
 @interface MissionItem : NSObject
 
