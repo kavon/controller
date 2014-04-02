@@ -37,7 +37,7 @@
 // This will get called too before the view appears
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"mapSegue"]) {
+    if (sender == NULL) {
         
         // Get destination view
         OnlineMapViewController *vc = [segue destinationViewController];
@@ -181,7 +181,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // table touch "click" code goes here: probably to go to maps (op1)
-    [self performSegueWithIdentifier:@"mapSegue" sender:self];
+    [self performSegueWithIdentifier:@"mapSegue" sender:NULL];
 }
 
 // delegate command on app-close

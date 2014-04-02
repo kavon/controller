@@ -117,7 +117,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YNa-Fl-oeO" kind="push" id="iuN-hc-Wqi"/>
+                                    <segue destination="YNa-Fl-oeO" kind="push" identifier="mapSegue" id="iuN-hc-Wqi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
