@@ -9,11 +9,11 @@
 #import "MissionControlViewController.h"
 #import "MissionItem.h"
 #import "AddMissionViewController.h"
+#import "OnlineMapViewController.h"
 
 @interface MissionControlViewController ()
 
-// array to hold mission items
-@property NSMutableArray *missionArray;
+// bool to confirm save occured
 @property BOOL saveSuccess;
 
 @end
@@ -34,11 +34,20 @@
     }
 }
 
-- (void) prepareForMapSegue:(UIStoryboardSegue *)segue sender:(id)sender
+// This will get called too before the view appears
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // only proceed if done button calls this
-    if (sender != self.tableView) return;
-    
+    if ([[segue identifier] isEqualToString:@"mapSegue"]) {
+        
+        // Get destination view
+        OnlineMapViewController *vc = [segue destinationViewController];
+        
+        // Get button tag number (or do whatever you need to do here, based on your object
+        MissionItem *selectedItem = _missionArray[self.tableView.indexPathForSelectedRow.item];
+        
+        // Pass the information to your destination view
+        [vc initMissionItem:selectedItem];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -172,6 +181,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // table touch "click" code goes here: probably to go to maps (op1)
+    [self performSegueWithIdentifier:@"mapSegue" sender:self];
 }
 
 // delegate command on app-close

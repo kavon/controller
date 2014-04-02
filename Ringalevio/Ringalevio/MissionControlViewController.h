@@ -10,6 +10,9 @@
 
 @interface MissionControlViewController : UITableViewController
 
+// array to hold mission items
+@property NSMutableArray *missionArray;
+
 // custom unwind command to return from a different view
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
