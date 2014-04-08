@@ -26,8 +26,7 @@
     // we need a dictionary to store all of the messages that need to be freed once they're sent.
     messageList = [NSMapTable mapTableWithKeyOptions:NSMapTableCopyIn valueOptions:NSMapTableStrongMemory];
     
-    socky = [[GCDAsyncUdpSocket alloc] init];
-    [socky setDelegate:self];
+    socky = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     return self;
 }
@@ -40,6 +39,9 @@
     [messageList removeObjectForKey:[NSNumber numberWithLong:tag]];
 }
 
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
+    // uh oh
+}
 
 
 /**

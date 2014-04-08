@@ -18,13 +18,13 @@
 -(id) init:(NSString *)host :(int)port {
     self = [super init:host :port];
     
-    gim_len = 26;
-    gim_buf = calloc(1, gim_len);
+    gim_len = 11;
+    gim_buf = calloc(gim_len, 1);
     
     // Setup Gimbal Positioning Message.
-    gim_buf[0] = 0x4;       // Label
+    gim_buf[0] = 0x30;       // Label
     gim_buf[1] = gim_len;   // Message Length
-    
+    gim_buf[2] = 0x0;       // original message.
     gim_buf[3] = 0x1;       // Controller ID (iOS).
     
     
@@ -45,47 +45,30 @@
     
     [self send: gim_buf :gim_len];
 }
-
-
--(void) writeGimbalXPosition: (uint32_t)x {
-    ((uint32_t*)gim_buf)[1] = x;
+// TODO: THESE ARE WRONG, GIM_BUF + OFFSET, CAST, DEREFERENCE
+-(void) writeAzimuthSpeed: (int16_t)az {
+    ((int16_t*)gim_buf)[4] = az;
 }
 
--(void) writeGimbalYPosition: (uint32_t)y {
-    ((uint32_t*)gim_buf)[2] = y;
+-(void) writeElevationSpeed: (int16_t)az {
+    ((int16_t*)gim_buf)[6] = az;
 }
 
--(void) writeGimbalZPosition: (uint32_t)z {
-    ((uint32_t*)gim_buf)[3] = z;
-}
-
--(void) writeGimbalAzimuth: (uint32_t)az {
-    ((uint32_t*)gim_buf)[4] = az;
-}
-
--(void) writeGimbalElevation:(int32_t)ele {
-    ((int32_t*)gim_buf)[5] = ele;
+-(void) writeEnableTrackingMode: (BOOL)az {
+    ((uint8_t*)gim_buf)[8] = (az ? 1 : 0);
 }
 
 
--(uint32_t) lastGimbalXPosition {
-    return ((uint32_t*)gim_buf)[1];
+-(int16_t) lastAzimuthSpeed {
+    return ((int16_t*)gim_buf)[4];
 }
 
--(uint32_t) lastGimbalYPosition {
-    return ((uint32_t*)gim_buf)[2];
+-(int16_t) lastElevationSpeed {
+    return ((int16_t*)gim_buf)[6];
 }
 
--(uint32_t) lastGimbalZPosition {
-    return ((uint32_t*)gim_buf)[3];
-}
-
--(uint32_t) lastGimbalAzimuth {
-    return ((uint32_t*)gim_buf)[4];
-}
-
--(int32_t) lastGimbalElevation {
-    return ((int32_t*)gim_buf)[5];;
+-(BOOL) lastTrackingModeEnabled {
+    return ((uint8_t*)gim_buf)[8] == 1;
 }
 
 

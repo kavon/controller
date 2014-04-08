@@ -18,11 +18,13 @@
 -(id) init:(NSString *)host :(int)port {
     self = [super init:host :port];
     
-    laser_len = 0;
-    laser_buf = calloc(1, laser_len);
+    laser_len = 7;
+    laser_buf = calloc(laser_len, 1);
     
-    // TODO: initialize Laser Control Message
-    
+    laser_buf[0] = 0x40;        // Laser control message
+    laser_buf[1] = laser_len;   // size of this message
+    laser_buf[2] = 0x0;         // this is the original message
+    laser_buf[3] = 0x0;         // TEST SENSOR
     
     return self;
 }
@@ -31,37 +33,54 @@
     free(laser_buf);
 }
 
+-(void)sendLaserMessage {
+    // calculate checksum before sending.
+    int checkSum = 0;
+    for(int i = 0; i < laser_len-1; i++) {
+        checkSum += laser_buf[i];
+    }
+    laser_buf[laser_len-1] = (uint8_t)(checkSum % 256);
+    
+    [self send: laser_buf :laser_len];
+}
 
 -(void) writeLaserMode:(uint8_t) mode {
     // TODO: Placeholder.
     switch (mode) {
         case 1:
             // Standby
+            laser_buf[5] = 0x01;
             break;
             
         case 2:
-            // Lase
+            // initate laser warning
+            laser_buf[5] = 0x11;
             break;
             
         default:
             // OFF
+            laser_buf[5] = 0x0;
             break;
     }
 }
 
--(void) writeLaserTarget:(uint8_t) targ {
-    // TODO: Placeholder.
+-(void) writeTarget:(uint8_t) targ {
+    laser_buf[4] = targ;
 }
 
 
 -(uint8_t)lastLaserMode {
-    // TODO: Placeholder.
-    return 0;
+    if(laser_buf[5] == 0x11) {
+        return 2;
+    } else if(laser_buf[5] == 0x01) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 -(uint8_t) lastLaserTarget {
-    // TODO: Placeholder.
-    return 0;
+    return laser_buf[4];
 }
 
 

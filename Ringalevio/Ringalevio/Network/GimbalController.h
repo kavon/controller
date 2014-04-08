@@ -16,53 +16,37 @@
 -(void) sendGimbalMessage;
 
 /**
- * Saves the value to the buffer.
+ * Relative speed of gimbal control (horizontal motion),
+ * -64 = max rate to the LEFT,
+ * 0 = stop (no motion)
+ * +64 = max rate to the RIGHT
+ * Legal Range = -64 to + 64
  */
--(void) writeGimbalXPosition: (uint32_t)x;
+-(void) writeAzimuthSpeed: (int16_t)az;
+
 
 /**
- * Saves the value to the buffer.
+ * Relative speed of gimbal control (vertical motion),
+ * -64 = max rate to the DOWN
+ * 0 = stop (no motion)
+ * +64 = max rate to the UP
+ * Legal Range = -64 to + 64
  */
--(void) writeGimbalYPosition: (uint32_t)y;
+-(void) writeElevationSpeed: (int16_t)az;
+
 
 /**
- * Saves the value to the buffer.
+ * Optical Tracking Mode:
+ * false = Optical tracking OFF
+ * true = optical tracking ON
  */
--(void) writeGimbalZPosition: (uint32_t)z;
+-(void) writeEnableTrackingMode: (BOOL)az;
 
-/**
- * Saves the value to the buffer.
- */
--(void) writeGimbalAzimuth: (uint32_t)az;
 
-/**
- * Saves the value to the buffer.
- */
--(void) writeGimbalElevation: (int32_t)ele;
+-(int16_t) lastAzimuthSpeed;
 
-/**
- * Last value written to the buffer (whether sent or not).
- */
--(uint32_t) lastGimbalXPosition;
+-(int16_t) lastElevationSpeed;
 
-/**
- * Last value written to the buffer (whether sent or not).
- */
--(uint32_t) lastGimbalYPosition;
-
-/**
- * Last value written to the buffer (whether sent or not).
- */
--(uint32_t) lastGimbalZPosition;
-
-/**
- * Last value written to the buffer (whether sent or not).
- */
--(uint32_t) lastGimbalAzimuth;
-
-/**
- * Last value written to the buffer (whether sent or not).
- */
--(int32_t) lastGimbalElevation;
+-(BOOL) lastTrackingModeEnabled;
 
 @end
