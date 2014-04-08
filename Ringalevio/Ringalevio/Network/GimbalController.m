@@ -45,30 +45,30 @@
     
     [self send: gim_buf :gim_len];
 }
-// TODO: THESE ARE WRONG, GIM_BUF + OFFSET, CAST, DEREFERENCE
+
 -(void) writeAzimuthSpeed: (int16_t)az {
-    ((int16_t*)gim_buf)[4] = az;
+    *((int16_t*)(gim_buf + 4)) = az;
 }
 
 -(void) writeElevationSpeed: (int16_t)az {
-    ((int16_t*)gim_buf)[6] = az;
+    *((int16_t*)(gim_buf + 6)) = az;
 }
 
 -(void) writeEnableTrackingMode: (BOOL)az {
-    ((uint8_t*)gim_buf)[8] = (az ? 1 : 0);
+    gim_buf[8] = (az ? 1 : 0);
 }
 
 
 -(int16_t) lastAzimuthSpeed {
-    return ((int16_t*)gim_buf)[4];
+    return *((int16_t*)(gim_buf + 4));
 }
 
 -(int16_t) lastElevationSpeed {
-    return ((int16_t*)gim_buf)[6];
+    return *((int16_t*)(gim_buf + 6));
 }
 
 -(BOOL) lastTrackingModeEnabled {
-    return ((uint8_t*)gim_buf)[8] == 1;
+    return gim_buf[8] == 1;
 }
 
 
