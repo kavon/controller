@@ -27,6 +27,9 @@
 @property double southwestXdouble;
 @property double southwestYdouble;
 
+@property RMTileCache* tileCache;
+@property RMMapboxSource* mapSource;
+
 // bool for cache status
 @property BOOL cached;
 
@@ -50,6 +53,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.tileCache = [[RMTileCache alloc] initWithExpiryPeriod:0];
+    [self.tileCache setBackgroundCacheDelegate:self];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,26 +75,25 @@
         self.southwestXdouble = [[_southwestX text] doubleValue];
         self.southwestYdouble = [[_southwestY text] doubleValue];
         
-        //mapbox online tile source
-        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi" ];
-    
-        // background tile cache
-        [self.mi.cache beginBackgroundCacheForTileSource:(tileSource) southWest:(makeCoordinate(_southwestXdouble, _southwestYdouble)) northEast:(makeCoordinate(_northeastXdouble, _northeastYdouble)) minZoom:(13) maxZoom: (15)];
+        // cache in background
+        self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
         
-        // animate progress cursor
-        self.progressSpinner.hidden = false;
+        [self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestXdouble, _southwestYdouble)) northEast:(makeCoordinate(_northeastXdouble, _northeastYdouble)) minZoom:(13) maxZoom: (15)];
         
         // block while caching?
-        /*while ([self.mi.cache isBackgroundCaching] != false)
+        NSLog(@"Cache Begin");
+        while ([self.tileCache isBackgroundCaching] == true)
         {
-            self.doneButton.enabled = false;
-            
-        }*/
         
-        // renable done button, stop animation
+        }
+        NSLog(@"Cache Complete");
+        
+        // renable done button
         self.doneButton.enabled = true;
-        self.progressSpinner.hidden = true;
         self.cacheButton.enabled = false;
+        
+        // set cache up in missionItem
+        self.mi.cache = self.tileCache;
         
         // set cache flag
         self.cached = true;

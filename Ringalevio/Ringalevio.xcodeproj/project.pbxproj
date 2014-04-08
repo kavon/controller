@@ -30,6 +30,7 @@
 		89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */; };
 		89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EAA97F18DDF3820029FA8F /* Mapbox.framework */; };
 		89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 89EAA98218DDF4250029FA8F /* Mapbox.bundle */; };
+		C20D50B018F47B2F00126C82 /* routeme.plist in Resources */ = {isa = PBXBuildFile; fileRef = C20D50AF18F47B2F00126C82 /* routeme.plist */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
 		C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D718B22C2100C189D5 /* QuartzCore.framework */; };
 		C24D45DA18B22C3400C189D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D918B22C3400C189D5 /* libsqlite3.dylib */; };
@@ -87,6 +88,7 @@
 		89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMapViewController.m; sourceTree = "<group>"; };
 		89EAA97F18DDF3820029FA8F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Frameworks/Mapbox.framework; sourceTree = "<group>"; };
 		89EAA98218DDF4250029FA8F /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = Frameworks/Mapbox.framework/Versions/A/Resources/Mapbox.bundle; sourceTree = SOURCE_ROOT; };
+		C20D50AF18F47B2F00126C82 /* routeme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = routeme.plist; sourceTree = "<group>"; };
 		C24D45D518B22C1300C189D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C24D45D718B22C2100C189D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C24D45D918B22C3400C189D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -182,6 +184,7 @@
 				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
+				C20D50AF18F47B2F00126C82 /* routeme.plist */,
 			);
 			path = Ringalevio;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20D50B018F47B2F00126C82 /* routeme.plist in Resources */,
 				89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */,
 				89191227189601F10039CE3D /* InfoPlist.strings in Resources */,
 				C2A648DB18D0C34C00D7F1A1 /* Storyboard_main.storyboard in Resources */,
