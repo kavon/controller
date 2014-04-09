@@ -37,25 +37,25 @@
                                 <rect key="frame" x="150" y="356" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8867" borderStyle="roundedRect" placeholder="Southwest Y Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8867" borderStyle="roundedRect" placeholder="Southwest Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
                                 <rect key="frame" x="20" y="262" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7497" borderStyle="roundedRect" placeholder="Southwest X Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-FZ-ppI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7497" borderStyle="roundedRect" placeholder="Southwest Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-FZ-ppI">
                                 <rect key="frame" x="20" y="224" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.8112" borderStyle="roundedRect" placeholder="Northeast X Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Eh-YxE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.8112" borderStyle="roundedRect" placeholder="Northeast Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Eh-YxE">
                                 <rect key="frame" x="20" y="148" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8536" borderStyle="roundedRect" placeholder="Northeast Y Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8536" borderStyle="roundedRect" placeholder="Northeast Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
                                 <rect key="frame" x="20" y="186" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -117,7 +117,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YNa-Fl-oeO" kind="push" identifier="mapSegue" id="iuN-hc-Wqi"/>
+                                    <segue destination="YNa-Fl-oeO" kind="push" identifier="mapSegue" id="ffD-aF-xOw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -130,11 +130,14 @@
                     <navigationItem key="navigationItem" title="Mission Control" id="sUw-Qm-xeW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="T0L-yP-cTb">
                             <connections>
-                                <segue destination="ASO-1M-d9q" kind="push" id="mS3-08-IaS"/>
+                                <segue destination="ASO-1M-d9q" kind="push" identifier="NULL" id="mS3-08-IaS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addButton" destination="T0L-yP-cTb" id="dDK-NT-Qhj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vF-Cv-zls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,11 +169,16 @@
                         <viewControllerLayoutGuide type="top" id="weM-1U-Kab"/>
                         <viewControllerLayoutGuide type="bottom" id="LyF-mp-qRN"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fQ3-4n-eUs">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="fQ3-4n-eUs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Laser Target" id="ewU-X5-V4q"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DBF-rt-HBv"/>
+                        <barButtonItem title="View Target" id="fIx-2v-nct"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="7qp-oa-cT7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOg-ql-RlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -199,13 +207,17 @@
         <!--Navigation Controller-->
         <scene sceneID="ahr-nV-QTd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="guq-HX-1ae" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="guq-HX-1ae" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WnA-x2-EMS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cKB-AJ-oHG">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="YNa-Fl-oeO" kind="relationship" relationship="rootViewController" id="KKy-as-SRz"/>
                     </connections>
@@ -221,7 +233,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iuN-hc-Wqi"/>
+        <segue reference="KKy-as-SRz"/>
         <segue reference="mS3-08-IaS"/>
     </inferredMetricsTieBreakers>
 </document>

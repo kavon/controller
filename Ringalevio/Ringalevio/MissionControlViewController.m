@@ -16,6 +16,9 @@
 // bool to confirm save occured
 @property BOOL saveSuccess;
 
+//Add UI button
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
+
 @end
 
 
@@ -37,17 +40,19 @@
 // This will get called too before the view appears
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender == NULL) {
+    if ([segue.identifier  isEqual: @"mapSegue"]) {
         
         // Get destination view
         OnlineMapViewController *vc = [segue destinationViewController];
         
-        // Get button tag number (or do whatever you need to do here, based on your object
-        MissionItem *selectedItem = _missionArray[self.tableView.indexPathForSelectedRow.item];
+        // Get object (or do whatever you need to do here, based on your object)
+        MissionItem *selectedItem = self.missionArray[self.tableView.indexPathForSelectedRow.item];
         
         // Pass the information to your destination view
-        [vc initMissionItem:selectedItem];
+        vc.mi = selectedItem;
     }
+    else
+        return;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -71,6 +76,8 @@
     NSString *docDir = [paths objectAtIndex:0];
     NSString *fullFileName = [NSString stringWithFormat:@"%@/missionArray", docDir];
     self.missionArray = [NSKeyedUnarchiver unarchiveObjectWithFile:fullFileName];
+    
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     [self.tableView reloadData];
     
@@ -181,7 +188,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // table touch "click" code goes here: probably to go to maps (op1)
-    [self performSegueWithIdentifier:@"mapSegue" sender:NULL];
+    //[self performSegueWithIdentifier:@"mapSegue" sender:self];
 }
 
 // delegate command on app-close
@@ -196,6 +203,16 @@
         _saveSuccess = [NSKeyedArchiver archiveRootObject:_missionArray toFile:fullFileName];
         
     } while (_saveSuccess != true);
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { //implement the delegate method
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Update data source array here, something like [array removeObjectAtIndex:indexPath.row];
+        [self.missionArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }   
 }
 
 @end

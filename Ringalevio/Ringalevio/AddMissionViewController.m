@@ -22,8 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressSpinner;
 
 // doubles for lat and long cache system
-@property double northeastXdouble;
-@property double northeastYdouble;
+@property double northeastXdouble;  //longitude
+@property double northeastYdouble;  //latitude
 @property double southwestXdouble;
 @property double southwestYdouble;
 
@@ -54,8 +54,7 @@
 	// Do any additional setup after loading the view.
     
     self.tileCache = [[RMTileCache alloc] initWithExpiryPeriod:0];
-    [self.tileCache setBackgroundCacheDelegate:self];
-    
+    //[self.tileCache setBackgroundCacheDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +77,7 @@
         // cache in background
         self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
         
-        [self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestXdouble, _southwestYdouble)) northEast:(makeCoordinate(_northeastXdouble, _northeastYdouble)) minZoom:(13) maxZoom: (15)];
+        //[self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestYdouble, _southwestXdouble)) northEast:(makeCoordinate(_northeastYdouble, _northeastXdouble)) minZoom:(13) maxZoom: (15)];
         
         // block while caching?
         NSLog(@"Cache Begin");
