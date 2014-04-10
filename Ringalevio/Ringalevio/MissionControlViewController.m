@@ -37,7 +37,7 @@
     }
 }
 
-// This will get called too before the view appears
+// Method for segue preparation (pass data references)
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier  isEqual: @"mapSegue"]) {

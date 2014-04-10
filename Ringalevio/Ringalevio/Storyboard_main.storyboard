@@ -27,7 +27,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="www.google.com" borderStyle="roundedRect" placeholder="Mission Health URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEB-hQ-jya">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://www.google.com" borderStyle="roundedRect" placeholder="Mission Health URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEB-hQ-jya">
                                 <rect key="frame" x="20" y="110" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -161,7 +161,7 @@
             </objects>
             <point key="canvasLocation" x="256" y="-7"/>
         </scene>
-        <!--Online Map View Controller-->
+        <!--Online Map View Controller - Track Map-->
         <scene sceneID="bVT-wj-Tam">
             <objects>
                 <viewController id="YNa-Fl-oeO" customClass="OnlineMapViewController" sceneMemberID="viewController">
@@ -175,15 +175,52 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Laser Target" id="ewU-X5-V4q"/>
+                        <barButtonItem title="Laser" id="ewU-X5-V4q"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DBF-rt-HBv"/>
-                        <barButtonItem title="View Target" id="fIx-2v-nct"/>
+                        <barButtonItem title="Mission Health" id="Ol0-oT-gfJ">
+                            <connections>
+                                <segue destination="QEu-35-Ovh" kind="push" identifier="healthSegue" id="8uh-v1-8DF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Fcl-C3-hle"/>
+                        <barButtonItem title="View" id="fIx-2v-nct">
+                            <connections>
+                                <segue destination="uJN-zv-lmM" kind="push" id="Bzs-jb-l5L"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="7qp-oa-cT7"/>
+                    <navigationItem key="navigationItem" title="Track Map" id="7qp-oa-cT7">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="2aM-UY-UTO"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="laserButton" destination="ewU-X5-V4q" id="2Ld-JI-AzH"/>
+                        <outlet property="viewButton" destination="fIx-2v-nct" id="vPS-4O-yyh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOg-ql-RlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1269" y="705"/>
+        </scene>
+        <!--Sensor View Controller - Sensor View-->
+        <scene sceneID="Tls-iT-TRB">
+            <objects>
+                <viewController id="uJN-zv-lmM" customClass="SensorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="40Q-Qd-Haj"/>
+                        <viewControllerLayoutGuide type="bottom" id="BCM-87-yWo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RAR-GK-3W0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sensor View" id="lYC-OI-BWZ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="038-ld-NIW"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SUt-yR-jxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2153" y="705"/>
         </scene>
         <!--Navigation Controller - Mission Configuration-->
         <scene sceneID="qLr-tB-5fX">
@@ -226,6 +263,73 @@
             </objects>
             <point key="canvasLocation" x="715" y="705"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7vg-6W-snn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="59T-DD-hfR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJw-Yb-FLn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uJN-zv-lmM" kind="relationship" relationship="rootViewController" id="5A9-0a-0Bh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SvH-Bd-KHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1759" y="705"/>
+        </scene>
+        <!--Health View Controller - Mission Health-->
+        <scene sceneID="xte-Oe-fqA">
+            <objects>
+                <viewController id="QEu-35-Ovh" customClass="HealthViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vdR-T3-YNp"/>
+                        <viewControllerLayoutGuide type="bottom" id="tXY-5V-QZt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k7E-Sy-ZTx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-zQ-Pos">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mission Health" id="HvP-IP-adZ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="5Uf-6b-z1B"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="CsU-zQ-Pos" id="ra6-K9-ADn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Npe-Ru-GcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1555" y="1476"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fDT-f1-fNj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="97f-ea-4yj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7X-YU-5BF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QEu-35-Ovh" kind="relationship" relationship="rootViewController" id="ff9-OO-Qho"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vgZ-CW-qns" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1093" y="1476"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -233,7 +337,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KKy-as-SRz"/>
+        <segue reference="Bzs-jb-l5L"/>
+        <segue reference="ffD-aF-xOw"/>
         <segue reference="mS3-08-IaS"/>
+        <segue reference="8uh-v1-8DF"/>
     </inferredMetricsTieBreakers>
 </document>

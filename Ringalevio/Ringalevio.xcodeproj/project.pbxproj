@@ -30,6 +30,7 @@
 		89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */; };
 		89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EAA97F18DDF3820029FA8F /* Mapbox.framework */; };
 		89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 89EAA98218DDF4250029FA8F /* Mapbox.bundle */; };
+		C20A951518F7292C00A66F17 /* HealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A951418F7292C00A66F17 /* HealthViewController.m */; };
 		C20D50B018F47B2F00126C82 /* routeme.plist in Resources */ = {isa = PBXBuildFile; fileRef = C20D50AF18F47B2F00126C82 /* routeme.plist */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
 		C24D45D818B22C2100C189D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D718B22C2100C189D5 /* QuartzCore.framework */; };
@@ -88,6 +89,8 @@
 		89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMapViewController.m; sourceTree = "<group>"; };
 		89EAA97F18DDF3820029FA8F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Frameworks/Mapbox.framework; sourceTree = "<group>"; };
 		89EAA98218DDF4250029FA8F /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = Frameworks/Mapbox.framework/Versions/A/Resources/Mapbox.bundle; sourceTree = SOURCE_ROOT; };
+		C20A951318F7292C00A66F17 /* HealthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthViewController.h; sourceTree = "<group>"; };
+		C20A951418F7292C00A66F17 /* HealthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthViewController.m; sourceTree = "<group>"; };
 		C20D50AF18F47B2F00126C82 /* routeme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = routeme.plist; sourceTree = "<group>"; };
 		C24D45D518B22C1300C189D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C24D45D718B22C2100C189D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -177,6 +180,8 @@
 				891C3F9718C28DAB000BC197 /* Network */,
 				C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */,
 				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
+				C20A951318F7292C00A66F17 /* HealthViewController.h */,
+				C20A951418F7292C00A66F17 /* HealthViewController.m */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
 				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
@@ -184,7 +189,6 @@
 				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
-				C20D50AF18F47B2F00126C82 /* routeme.plist */,
 			);
 			path = Ringalevio;
 			sourceTree = "<group>";
@@ -192,6 +196,7 @@
 		89191223189601F10039CE3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C20D50AF18F47B2F00126C82 /* routeme.plist */,
 				89191224189601F10039CE3D /* Ringalevio-Info.plist */,
 				89191225189601F10039CE3D /* InfoPlist.strings */,
 				89191228189601F10039CE3D /* main.m */,
@@ -336,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20A951518F7292C00A66F17 /* HealthViewController.m in Sources */,
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				8994231C18F3796E008DD3FB /* HostReciever.m in Sources */,

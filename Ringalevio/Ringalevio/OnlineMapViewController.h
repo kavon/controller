@@ -10,7 +10,7 @@
 #import "MissionControlViewController.h"
 #import "MissionItem.h"
 
-@interface OnlineMapViewController : UIViewController
+@interface OnlineMapViewController : UIViewController <RMMapViewDelegate>
 
 // current mission item
 @property  MissionItem *mi;
