@@ -111,6 +111,12 @@
         self.mi.missionHealthURL = self.missionHealthURL.text;
         self.mi.missionNortheast = makeCoordinate(_northeastXdouble, _northeastYdouble);
         self.mi.missionSouthwest = makeCoordinate(_southwestXdouble, _southwestYdouble);
+        
+        // get destination view controller
+        MissionControlViewController *vc = [segue destinationViewController];
+        
+        // add item
+        [vc.missionArray addObject:self.mi];
     }
 }
 

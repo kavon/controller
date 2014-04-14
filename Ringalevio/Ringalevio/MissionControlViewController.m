@@ -28,13 +28,8 @@
 // custom unwind command to return from a different view
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    // code here to return to this panel with sent values and such
-    AddMissionViewController *source = [segue sourceViewController];
-    MissionItem *item = source.mi;
-    if (item != nil) {
-        [self.missionArray addObject:item];
-        [self.tableView reloadData];
-    }
+    // code here to return to this panel with sent values and such (just reload for now)
+    [self.tableView reloadData];
 }
 
 // Method for segue preparation (pass data references)
@@ -76,6 +71,12 @@
     NSString *docDir = [paths objectAtIndex:0];
     NSString *fullFileName = [NSString stringWithFormat:@"%@/missionArray", docDir];
     self.missionArray = [NSKeyedUnarchiver unarchiveObjectWithFile:fullFileName];
+    
+    // prevent initial run save/restore hiccup by making sure the array is allocated somehow at this point
+    if (self.missionArray == nil)
+    {
+        self.missionArray = [[NSMutableArray alloc] init];
+    }
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     

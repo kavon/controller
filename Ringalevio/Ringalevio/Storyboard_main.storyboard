@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Add Mission View Controller - Mission Configuration-->
         <scene sceneID="5Ri-PZ-bhv">
             <objects>
-                <viewController id="ASO-1M-d9q" customClass="AddMissionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMissionPanel" id="ASO-1M-d9q" customClass="AddMissionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pHm-TB-8oQ"/>
                         <viewControllerLayoutGuide type="bottom" id="TAj-v6-72P"/>
@@ -103,7 +103,7 @@
         <!--Mission Control View Controller - Mission Control-->
         <scene sceneID="N8R-cx-f4F">
             <objects>
-                <tableViewController id="Qne-TZ-zgC" customClass="MissionControlViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="missionControlPanel" id="Qne-TZ-zgC" customClass="MissionControlViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JRH-L7-WIh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +146,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7qa-iq-eGc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzc-lZ-gcM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav0" automaticallyAdjustsScrollViewInsets="NO" id="tzc-lZ-gcM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R4Q-Mf-fCT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -164,7 +164,7 @@
         <!--Online Map View Controller - Track Map-->
         <scene sceneID="bVT-wj-Tam">
             <objects>
-                <viewController id="YNa-Fl-oeO" customClass="OnlineMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="onlineMapPanel" id="YNa-Fl-oeO" customClass="OnlineMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="weM-1U-Kab"/>
                         <viewControllerLayoutGuide type="bottom" id="LyF-mp-qRN"/>
@@ -204,7 +204,7 @@
         <!--Sensor View Controller - Sensor View-->
         <scene sceneID="Tls-iT-TRB">
             <objects>
-                <viewController id="uJN-zv-lmM" customClass="SensorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sensorViewPanel" id="uJN-zv-lmM" customClass="SensorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="40Q-Qd-Haj"/>
                         <viewControllerLayoutGuide type="bottom" id="BCM-87-yWo"/>
@@ -225,7 +225,7 @@
         <!--Navigation Controller - Mission Configuration-->
         <scene sceneID="qLr-tB-5fX">
             <objects>
-                <navigationController title="Mission Configuration" automaticallyAdjustsScrollViewInsets="NO" id="Kfo-88-9z1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav1" title="Mission Configuration" automaticallyAdjustsScrollViewInsets="NO" id="Kfo-88-9z1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Wvy-vJ-slZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QNZ-Ux-UNg">
@@ -244,7 +244,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ahr-nV-QTd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="guq-HX-1ae" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav2" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="guq-HX-1ae" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WnA-x2-EMS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -266,7 +266,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7vg-6W-snn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="59T-DD-hfR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav3" automaticallyAdjustsScrollViewInsets="NO" id="59T-DD-hfR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJw-Yb-FLn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -284,7 +284,7 @@
         <!--Health View Controller - Mission Health-->
         <scene sceneID="xte-Oe-fqA">
             <objects>
-                <viewController id="QEu-35-Ovh" customClass="HealthViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="healthViewPanel" id="QEu-35-Ovh" customClass="HealthViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vdR-T3-YNp"/>
                         <viewControllerLayoutGuide type="bottom" id="tXY-5V-QZt"/>
@@ -315,7 +315,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fDT-f1-fNj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="97f-ea-4yj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav4" automaticallyAdjustsScrollViewInsets="NO" id="97f-ea-4yj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7X-YU-5BF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -337,9 +337,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Bzs-jb-l5L"/>
-        <segue reference="ffD-aF-xOw"/>
+        <segue reference="5A9-0a-0Bh"/>
         <segue reference="mS3-08-IaS"/>
-        <segue reference="8uh-v1-8DF"/>
+        <segue reference="ff9-OO-Qho"/>
+        <segue reference="KKy-as-SRz"/>
     </inferredMetricsTieBreakers>
 </document>
