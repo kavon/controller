@@ -11,7 +11,7 @@
 #import "MissionItem.h"
 #import "MissionControlViewController.h"
 
-@interface AddMissionViewController : UIViewController
+@interface AddMissionViewController : UIViewController <RMTileCacheBackgroundDelegate>
 
 // method for when cache button is pressed
 - (IBAction)cacheButtonPress:(id *)sender;

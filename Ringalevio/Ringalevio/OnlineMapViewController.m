@@ -1,6 +1,8 @@
 //
-//  AddMapViewController.m
+//  OnlineMapViewController.m
 //  Ringalevio
+//
+//  Online Map View Controller is the view controller subclass that dictates how the map operates.
 //
 //  Created by Tim Sexton on 3/13/14.
 //     Edited by Sean Lane, 4/10/14
@@ -21,7 +23,10 @@
 // data elements
 @property NSString* subtitle1;
 @property NSString* subtitle2;
+
+// map elements
 @property RMAnnotation* selectedMarker;
+@property RMMapboxSource* mapSource;
 
 @end
 
@@ -68,9 +73,18 @@
         self.viewButton.enabled = NO;
         
         // set up mapbox
-        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"461group.hocfjnai" ];
+        /*NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"mapbox" ofType:@"json"];
+        NSError *error = nil;
+        NSStringEncoding encoding1 = NULL;
+        NSString* tileJSON = [NSString stringWithContentsOfFile:fullPath encoding:encoding1 error:&error];
         
-        RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:tileSource];
+        // check error
+        if (tileJSON == nil)
+            NSLog(@"error: %@", [error description]);*/
+        
+        self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"461group.hocfjnai"];
+        
+        RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:self.mapSource];
         
         mapView.Delegate = self;
         

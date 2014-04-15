@@ -42,7 +42,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.progressSpinner.hidden = true;
         self.cached = false;
     }
     return self;
@@ -53,8 +52,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // initialize mapbox caches
     self.tileCache = [[RMTileCache alloc] initWithExpiryPeriod:0];
-    //[self.tileCache setBackgroundCacheDelegate:self];
+    [self.tileCache setBackgroundCacheDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +66,7 @@
 // function to be called by "cache maps" button
 - (IBAction)cacheButtonPress:(id *)sender
 {
-    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0)) {
+    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0) && (self.cached != YES)) {
         
         // set doubles from text boxes
         self.northeastXdouble = [[_northeastX text] doubleValue];
@@ -81,21 +81,13 @@
         
         // block while caching?
         NSLog(@"Cache Begin");
-        while ([self.tileCache isBackgroundCaching] == true)
-        {
         
-        }
-        NSLog(@"Cache Complete");
-        
-        // renable done button
-        self.doneButton.enabled = true;
-        self.cacheButton.enabled = false;
-        
-        // set cache up in missionItem
-        self.mi.cache = self.tileCache;
+        // disable cache button
+        self.cacheButton.enabled = NO;
+        self.doneButton.enabled = YES;
         
         // set cache flag
-        self.cached = true;
+        self.cached = YES;
     }
 }
 
@@ -107,10 +99,14 @@
     // if there is text in the name and mission health fields, and cache successful
     if ((self.missionName.text.length > 0) && (self.missionHealthURL.text.length > 0) && (self.cached == true)) {
         self.mi = [[MissionItem alloc] init];
+        
+        // set missionItem fields
         self.mi.missionName = self.missionName.text;
         self.mi.missionHealthURL = self.missionHealthURL.text;
         self.mi.missionNortheast = makeCoordinate(_northeastXdouble, _northeastYdouble);
         self.mi.missionSouthwest = makeCoordinate(_southwestXdouble, _southwestYdouble);
+        self.mi.cache = nil;
+        
         
         // get destination view controller
         MissionControlViewController *vc = [segue destinationViewController];
@@ -118,6 +114,18 @@
         // add item
         [vc.missionArray addObject:self.mi];
     }
+}
+
+// delegate function: every time we successfully cache a map tile, run this
+- (void)tileCache:(RMTileCache *)tileCache didBackgroundCacheTile:(RMTile)tile withIndex:(int)tileIndex ofTotalTileCount:(int)totalTileCount
+{
+    NSLog(@"Caching Tile %i", tileIndex);
+}
+
+// delegate function: for when background caching is completed
+- (void)tileCacheDidFinishBackgroundCache:(RMTileCache *)tileCache
+{
+    self.doneButton.enabled = YES;
 }
 
 // constructor for 2d coordinate for cache system

@@ -8,7 +8,7 @@
 			<key>type</key>
 			<string>db-cache</string>
 			<key>capacity</key>
-			<integer>10000</integer>
+			<integer>1000</integer>
 			<key>expiryPeriod</key>
 			<integer>0</integer>
 			<key>minimalPurge</key>
