@@ -16,7 +16,6 @@
 @interface OnlineMapViewController ()
 
 // UI elements
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewButton;
 
 
@@ -41,9 +40,10 @@
     return self;
 }
 
-// Method for segue preparation (pass data references)
+// Method for segue preparation (pass data references, prepare network for next panel)
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // segue to health web page
     if ([segue.identifier  isEqual: @"healthSegue"]) {
         
         // Get destination view
@@ -52,6 +52,12 @@
         // Pass the information to your destination view
         vc.mi = self.mi;
     }
+    
+    // segue to sensor, "move to target" network packet goes here
+    if ([segue.identifier  isEqual: @"sensorSegue"]) {
+        
+    }
+    
     else
         return;
 }
@@ -69,7 +75,6 @@
         [super viewDidLoad];
         
         // disable buttons initially
-        self.laserButton.enabled = NO;
         self.viewButton.enabled = NO;
         
         // set up mapbox
@@ -155,12 +160,10 @@
     // manage buttons
     if ([annotation.annotationType  isEqual: @"sensor"])
     {
-        self.laserButton.enabled = NO;
         self.viewButton.enabled = NO;
     }
     else if ([annotation.annotationType  isEqual: @"track"])
     {
-        self.laserButton.enabled = YES;
         self.viewButton.enabled = YES;
     }
 }
@@ -170,7 +173,6 @@
 {
     // disable buttons and clear marker selection
     self.selectedMarker = nil;
-    self.laserButton.enabled = NO;
     self.viewButton.enabled = NO;
 }
 

@@ -9,6 +9,22 @@
 
 @interface SensorViewController ()
 
+// laser control boolean
+@property BOOL laserEnabled;
+
+// laser control UI toolbar items
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserStandbyButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserLowButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserHighButton;
+@property (weak, nonatomic) IBOutlet UILabel *laserLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *laserToggle;
+
+// laser control methods
+- (IBAction)laserStandbyPress:(id)sender;
+- (IBAction)laserLowPress:(id)sender;
+- (IBAction)laserHighPress:(id)sender;
+- (IBAction)laserToggled:(UISwitch *)sender;
+
 @end
 
 @implementation SensorViewController
@@ -85,5 +101,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+// method for setting laser to standby
+- (IBAction)laserStandbyPress:(id)sender {
+    
+}
+
+// method for setting laser to low
+- (IBAction)laserLowPress:(id)sender {
+    
+}
+
+// method for setting laser to high
+- (IBAction)laserHighPress:(id)sender {
+    
+}
+
+// method for toggling laser controls on and off
+- (IBAction)laserToggled:(UISwitch *)sender {
+    
+}
 
 @end

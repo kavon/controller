@@ -31,6 +31,8 @@
 		89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EAA97F18DDF3820029FA8F /* Mapbox.framework */; };
 		89EAA98318DDF4250029FA8F /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 89EAA98218DDF4250029FA8F /* Mapbox.bundle */; };
 		C206DD6018FDB46100A17C90 /* Mapbox.json in Resources */ = {isa = PBXBuildFile; fileRef = C206DD5F18FDB46100A17C90 /* Mapbox.json */; };
+		C206DD631900863100A17C90 /* AddTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206DD621900863100A17C90 /* AddTrackViewController.m */; };
+		C206DD661900933600A17C90 /* CameraOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206DD651900933600A17C90 /* CameraOverlayViewController.m */; };
 		C20A951518F7292C00A66F17 /* HealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A951418F7292C00A66F17 /* HealthViewController.m */; };
 		C20D50B018F47B2F00126C82 /* routeme.plist in Resources */ = {isa = PBXBuildFile; fileRef = C20D50AF18F47B2F00126C82 /* routeme.plist */; };
 		C24D45D618B22C1300C189D5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D45D518B22C1300C189D5 /* CoreLocation.framework */; };
@@ -91,6 +93,10 @@
 		89EAA97F18DDF3820029FA8F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Frameworks/Mapbox.framework; sourceTree = "<group>"; };
 		89EAA98218DDF4250029FA8F /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = Frameworks/Mapbox.framework/Versions/A/Resources/Mapbox.bundle; sourceTree = SOURCE_ROOT; };
 		C206DD5F18FDB46100A17C90 /* Mapbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mapbox.json; sourceTree = "<group>"; };
+		C206DD611900863100A17C90 /* AddTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTrackViewController.h; sourceTree = "<group>"; };
+		C206DD621900863100A17C90 /* AddTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTrackViewController.m; sourceTree = "<group>"; };
+		C206DD641900933600A17C90 /* CameraOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayViewController.h; sourceTree = "<group>"; };
+		C206DD651900933600A17C90 /* CameraOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayViewController.m; sourceTree = "<group>"; };
 		C20A951318F7292C00A66F17 /* HealthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthViewController.h; sourceTree = "<group>"; };
 		C20A951418F7292C00A66F17 /* HealthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthViewController.m; sourceTree = "<group>"; };
 		C20D50AF18F47B2F00126C82 /* routeme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = routeme.plist; sourceTree = "<group>"; };
@@ -184,6 +190,10 @@
 				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
 				C20A951318F7292C00A66F17 /* HealthViewController.h */,
 				C20A951418F7292C00A66F17 /* HealthViewController.m */,
+				C206DD641900933600A17C90 /* CameraOverlayViewController.h */,
+				C206DD651900933600A17C90 /* CameraOverlayViewController.m */,
+				C206DD611900863100A17C90 /* AddTrackViewController.h */,
+				C206DD621900863100A17C90 /* AddTrackViewController.m */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
 				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
@@ -347,6 +357,7 @@
 			files = (
 				C20A951518F7292C00A66F17 /* HealthViewController.m in Sources */,
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
+				C206DD661900933600A17C90 /* CameraOverlayViewController.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				8994231C18F3796E008DD3FB /* HostReciever.m in Sources */,
 				89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */,
@@ -359,6 +370,7 @@
 				8909203118D63EBC00D03CF4 /* SensorViewController.m in Sources */,
 				891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */,
 				89DF249D18D51D100082A63B /* AddMissionViewController.m in Sources */,
+				C206DD631900863100A17C90 /* AddTrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

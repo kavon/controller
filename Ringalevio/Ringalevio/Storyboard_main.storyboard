@@ -175,8 +175,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Laser" id="ewU-X5-V4q"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DBF-rt-HBv"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lVN-vu-ACx"/>
                         <barButtonItem title="Mission Health" id="Ol0-oT-gfJ">
                             <connections>
                                 <segue destination="QEu-35-Ovh" kind="push" identifier="healthSegue" id="8uh-v1-8DF"/>
@@ -185,21 +184,26 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Fcl-C3-hle"/>
                         <barButtonItem title="View" id="fIx-2v-nct">
                             <connections>
-                                <segue destination="uJN-zv-lmM" kind="push" id="Bzs-jb-l5L"/>
+                                <segue destination="uJN-zv-lmM" kind="push" identifier="sensorSegue" id="Bzs-jb-l5L"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="nhl-d5-W87"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Track Map" id="7qp-oa-cT7">
                         <barButtonItem key="backBarButtonItem" title="Back" id="2aM-UY-UTO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Track" id="3Y8-9V-LqX">
+                            <connections>
+                                <segue destination="Yr7-5L-V1o" kind="push" id="G6q-23-IEX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="laserButton" destination="ewU-X5-V4q" id="2Ld-JI-AzH"/>
                         <outlet property="viewButton" destination="fIx-2v-nct" id="vPS-4O-yyh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOg-ql-RlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269" y="705"/>
+            <point key="canvasLocation" x="1262" y="705"/>
         </scene>
         <!--Sensor View Controller - Sensor View-->
         <scene sceneID="Tls-iT-TRB">
@@ -212,11 +216,53 @@
                     <view key="view" contentMode="scaleToFill" id="RAR-GK-3W0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mYz-Bm-hU7">
+                                <rect key="frame" x="64" y="481" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="laserToggled:" destination="uJN-zv-lmM" eventType="valueChanged" id="inq-1f-0s4"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Laser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAV-kI-B14">
+                                <rect key="frame" x="14" y="486" width="48" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Standby" id="12B-8j-Yia">
+                            <connections>
+                                <action selector="laserStandbyPress:" destination="uJN-zv-lmM" id="9YX-ef-GLz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="8sA-7P-Oym"/>
+                        <barButtonItem title="Laser LO" id="shM-ev-9UP">
+                            <connections>
+                                <action selector="laserLowPress:" destination="uJN-zv-lmM" id="V5h-s3-eSu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="b5G-dp-VOW"/>
+                        <barButtonItem title="Laser HI" id="VQ6-l7-9Lb">
+                            <connections>
+                                <action selector="laserHighPress:" destination="uJN-zv-lmM" id="GkQ-oJ-a0e"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Sensor View" id="lYC-OI-BWZ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="038-ld-NIW"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="laserHighButton" destination="VQ6-l7-9Lb" id="QVX-cD-ABc"/>
+                        <outlet property="laserLabel" destination="qAV-kI-B14" id="d9m-Es-l5f"/>
+                        <outlet property="laserLowButton" destination="shM-ev-9UP" id="VXo-TY-1JQ"/>
+                        <outlet property="laserStandbyButton" destination="12B-8j-Yia" id="G5k-cK-ybH"/>
+                        <outlet property="laserToggle" destination="mYz-Bm-hU7" id="tb9-yj-soE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUt-yR-jxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,7 +307,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZ5-Op-9ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715" y="705"/>
+            <point key="canvasLocation" x="788" y="705"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7vg-6W-snn">
@@ -279,7 +325,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvH-Bd-KHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="705"/>
+            <point key="canvasLocation" x="1707" y="705"/>
         </scene>
         <!--Health View Controller - Mission Health-->
         <scene sceneID="xte-Oe-fqA">
@@ -310,7 +356,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npe-Ru-GcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="1476"/>
+            <point key="canvasLocation" x="1707" y="1476"/>
+        </scene>
+        <!--Add Track View Controller - Add Track-->
+        <scene sceneID="rtI-fi-Xk1">
+            <objects>
+                <viewController storyboardIdentifier="addTrackPanel" id="Yr7-5L-V1o" customClass="AddTrackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uys-q9-oU6"/>
+                        <viewControllerLayoutGuide type="bottom" id="veU-rX-sOB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7t5-N9-7pn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUt-FP-rwF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Track" id="BKO-L7-Ax5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="tYZ-hA-bua"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraView" destination="rUt-FP-rwF" id="uPK-5s-JCN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-Tu-2X3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2593" y="1476"/>
+        </scene>
+        <!--Camera Overlay View Controller-->
+        <scene sceneID="LmQ-dB-mKn">
+            <objects>
+                <viewController storyboardIdentifier="cameraOverlayView" id="rjn-h0-b9z" customClass="CameraOverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1u3-qU-i5W"/>
+                        <viewControllerLayoutGuide type="bottom" id="13i-Py-3sy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YSp-cy-z0p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xn3-h9-7ci">
+                                <rect key="frame" x="97" y="505" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Add Track" backgroundImage="LoadingTile6.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addTrackButton:" destination="rjn-h0-b9z" eventType="touchUpInside" id="Ny6-c9-i4j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bET-ah-ZCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3047" y="1476"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fDT-f1-fNj">
@@ -328,18 +435,40 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgZ-CW-qns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093" y="1476"/>
+            <point key="canvasLocation" x="1262" y="1476"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YLx-1w-Iv9">
+            <objects>
+                <navigationController storyboardIdentifier="nav5" automaticallyAdjustsScrollViewInsets="NO" id="hXc-xJ-Tvi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZOA-Ty-uT7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yr7-5L-V1o" kind="relationship" relationship="rootViewController" id="qRS-Wh-b8g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3E-zM-I46" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2153" y="1476"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LoadingTile6.png" width="256" height="256"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5A9-0a-0Bh"/>
-        <segue reference="mS3-08-IaS"/>
-        <segue reference="ff9-OO-Qho"/>
         <segue reference="KKy-as-SRz"/>
+        <segue reference="8uh-v1-8DF"/>
+        <segue reference="Bzs-jb-l5L"/>
+        <segue reference="G6q-23-IEX"/>
+        <segue reference="mS3-08-IaS"/>
     </inferredMetricsTieBreakers>
 </document>
