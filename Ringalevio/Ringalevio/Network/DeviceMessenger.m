@@ -19,15 +19,18 @@
 }
 
 -(id) init :(NSString*) host :(int) port {
-    hostName = host;
-    portNum = port;
-    lastTag = 0;
+    self = [super init];
+    if(self) {
+        hostName = host;
+        portNum = port;
+        lastTag = 0;
     
-    // we need a dictionary to store all of the messages that need to be freed once they're sent.
-    messageList = [NSMapTable mapTableWithKeyOptions:NSMapTableCopyIn valueOptions:NSMapTableStrongMemory];
+        // we need a dictionary to store all of the messages that need to be freed once they're sent.
+        messageList = [NSMapTable mapTableWithKeyOptions:NSMapTableCopyIn valueOptions:NSMapTableStrongMemory];
     
-    socky = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
+        socky = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+
+    }
     return self;
 }
 
@@ -37,10 +40,11 @@
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
     // remove reference in the map, effectively "release"s its last strong reference.
     [messageList removeObjectForKey:[NSNumber numberWithLong:tag]];
+    NSLog(@"Successfully sent datagram tag %ld", tag);
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
-    // uh oh
+    NSLog(@"ERROR: did not send datagram tag %ld", tag);
 }
 
 
@@ -55,7 +59,7 @@
  */
 -(void) send :(void*) message :(long) numBytes {
     NSData *copy = [[NSData alloc] initWithBytes:message length:numBytes];
-    [messageList setObject:copy forKey: [NSNumber numberWithLong:lastTag++]];
+    [messageList setObject:copy forKey: [NSNumber numberWithLong:lastTag]];
     
     // sendData requires that you do not modify the buffer until the delegate function
     // indicating it successfully sent the data with the tag specified.
@@ -63,6 +67,10 @@
     // and then release it.
     
     [socky sendData:copy toHost:hostName port:portNum withTimeout:-1 tag:lastTag];
+    
+    NSLog(@"Requested to send datagram tag %ld", lastTag);
+    
+    lastTag += 1;
 }
 
 

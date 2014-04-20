@@ -6,7 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MissionItem.h"
 
 @interface SensorViewController : UIViewController
+
+// Mission item for recieving URL
+@property MissionItem* mi;
+
+- (void)reloadStream;
 
 @end

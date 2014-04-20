@@ -27,7 +27,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://www.google.com" borderStyle="roundedRect" placeholder="Mission Health URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEB-hQ-jya">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://192.168.23.41:8080/" borderStyle="roundedRect" placeholder="Mission Health URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEB-hQ-jya">
                                 <rect key="frame" x="20" y="110" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -217,51 +217,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mYz-Bm-hU7">
-                                <rect key="frame" x="64" y="481" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="laserToggled:" destination="uJN-zv-lmM" eventType="valueChanged" id="inq-1f-0s4"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Laser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAV-kI-B14">
-                                <rect key="frame" x="14" y="486" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmk-XD-JKz">
+                                <rect key="frame" x="0.0" y="43" width="320" height="482"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
+                        <barButtonItem title="Warn" id="uCf-7p-x01">
+                            <connections>
+                                <action selector="laserWarnPress:" destination="uJN-zv-lmM" id="lHj-zd-omJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="8sA-7P-Oym"/>
                         <barButtonItem title="Standby" id="12B-8j-Yia">
                             <connections>
                                 <action selector="laserStandbyPress:" destination="uJN-zv-lmM" id="9YX-ef-GLz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="8sA-7P-Oym"/>
-                        <barButtonItem title="Laser LO" id="shM-ev-9UP">
-                            <connections>
-                                <action selector="laserLowPress:" destination="uJN-zv-lmM" id="V5h-s3-eSu"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="b5G-dp-VOW"/>
-                        <barButtonItem title="Laser HI" id="VQ6-l7-9Lb">
+                        <barButtonItem title="Off" id="P2l-q6-YZ0">
                             <connections>
-                                <action selector="laserHighPress:" destination="uJN-zv-lmM" id="GkQ-oJ-a0e"/>
+                                <action selector="laserOffPress:" destination="uJN-zv-lmM" id="VH7-zT-lIw"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Sensor View" id="lYC-OI-BWZ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="038-ld-NIW"/>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="laserHighButton" destination="VQ6-l7-9Lb" id="QVX-cD-ABc"/>
-                        <outlet property="laserLabel" destination="qAV-kI-B14" id="d9m-Es-l5f"/>
-                        <outlet property="laserLowButton" destination="shM-ev-9UP" id="VXo-TY-1JQ"/>
+                        <outlet property="laserOffButton" destination="P2l-q6-YZ0" id="RUD-Dk-v0B"/>
                         <outlet property="laserStandbyButton" destination="12B-8j-Yia" id="G5k-cK-ybH"/>
-                        <outlet property="laserToggle" destination="mYz-Bm-hU7" id="tb9-yj-soE"/>
+                        <outlet property="laserWarningButton" destination="uCf-7p-x01" id="L7D-pb-q7z"/>
+                        <outlet property="videoStream" destination="Nmk-XD-JKz" id="yOs-xZ-Y7v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUt-yR-jxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -312,13 +304,18 @@
         <!--Navigation Controller-->
         <scene sceneID="7vg-6W-snn">
             <objects>
-                <navigationController storyboardIdentifier="nav3" automaticallyAdjustsScrollViewInsets="NO" id="59T-DD-hfR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav3" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="59T-DD-hfR" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJw-Yb-FLn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="X1Y-Gg-6NR">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="uJN-zv-lmM" kind="relationship" relationship="rootViewController" id="5A9-0a-0Bh"/>
                     </connections>
@@ -467,8 +464,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="KKy-as-SRz"/>
         <segue reference="8uh-v1-8DF"/>
-        <segue reference="Bzs-jb-l5L"/>
         <segue reference="G6q-23-IEX"/>
         <segue reference="mS3-08-IaS"/>
+        <segue reference="5A9-0a-0Bh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,7 +8,7 @@
 
 #import "GimbalController.h"
 
-@interface LaserController : GimbalController
+@interface LaserController : DeviceMessenger
 
 /**
  * Send the message in the buffer.

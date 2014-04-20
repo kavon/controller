@@ -41,7 +41,7 @@
     }
     laser_buf[laser_len-1] = (uint8_t)(checkSum % 256);
     
-    [self send: laser_buf :laser_len];
+    [super send: laser_buf :laser_len];
 }
 
 -(void) writeLaserMode:(uint8_t) mode {

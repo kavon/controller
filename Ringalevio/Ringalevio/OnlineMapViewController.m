@@ -11,6 +11,7 @@
 
 #import "OnlineMapViewController.h"
 #import "HealthViewController.h"
+#import "SensorViewController.h"
 #import <Mapbox/Mapbox.h>
 
 @interface OnlineMapViewController ()
@@ -55,7 +56,8 @@
     
     // segue to sensor, "move to target" network packet goes here
     if ([segue.identifier  isEqual: @"sensorSegue"]) {
-        
+        SensorViewController *svc = [segue destinationViewController];
+        svc.mi = self.mi;
     }
     
     else

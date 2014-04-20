@@ -6,6 +6,8 @@
 //
 
 #import "SensorViewController.h"
+#import "Network/LaserController.h"
+#import "Network/Configuration.h"
 
 @interface SensorViewController ()
 
@@ -14,16 +16,12 @@
 
 // laser control UI toolbar items
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *laserStandbyButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserLowButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserHighButton;
-@property (weak, nonatomic) IBOutlet UILabel *laserLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *laserToggle;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserWarningButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *laserOffButton;
+@property (weak, nonatomic) IBOutlet UIWebView *videoStream;
 
 // laser control methods
 - (IBAction)laserStandbyPress:(id)sender;
-- (IBAction)laserLowPress:(id)sender;
-- (IBAction)laserHighPress:(id)sender;
-- (IBAction)laserToggled:(UISwitch *)sender;
 
 @end
 
@@ -31,58 +29,59 @@
 
 {
     NSString *streamLocation;
-    UIWebView *videoView;
+    LaserController *lc;
+    uint8_t currentTarget;
 }
 
--(id)init
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    CGRect f = self.view.bounds;
-    
-    UIInterfaceOrientation currentOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(currentOrientation == UIInterfaceOrientationPortrait || currentOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        CGFloat temp = f.size.width;
-        f.size.width = f.size.height;
-        f.size.height = temp;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+        lc = [[LaserController alloc] init:SERVER_ADDR :SERVER_RCV_PORT];
+        
+        currentTarget = 0;
+        
+        //CGRect f = self.view.bounds;
+        
+        // link, NSString, http://192.168.23.35/mjpg/video.mjpg is the defacto link right now.
+        // width, int
+        // height, int
+        //streamLocation = [NSString stringWithFormat:@"<html><body style=\"margin:0; padding:0\"><center><img id=\"stream\" src=\"%@\" width=\"%d\" height=\"%d\" border=\"0\" alt=\"Error, check your configuration.\"/></center></body></html>", @"http://192.168.23.35/mjpg/video.mjpg", 160, 100];
+        
+        //streamLocation = @"<html><body style=\"margin:0; padding:0\"><center><h1>VIDEO STREAM SHOULD APPEAR.</h1></center></body></html>";
     }
-    
-    videoView = [[UIWebView alloc] initWithFrame:f];
-    
-    // link, NSString, http://192.168.1.90/mjpg/video.mjpg is the defacto link right now.
-    // width, int
-    // height, int
-    streamLocation = [NSString stringWithFormat:@"<html><body style=\"margin:0; padding:0\"><img id=\"stream\" src=\"%@\" width=\"%d\" height=\"%d\" border=\"0\" alt=\"If no image is displayed, check your configuration.\"></body></html>", @"http://192.168.1.90/mjpg/video.mjpg", (int)f.size.width, (int)f.size.height];
-    
-    [videoView loadHTMLString:streamLocation baseURL:NULL];
-    
-    // remove the user's ability to "scroll" in this web view.
-    videoView.userInteractionEnabled = NO;
-    
-    [self.view addSubview:videoView];
-    
     return self;
 }
 
-
-- (NSUInteger)supportedInterfaceOrientations
+- (void)viewDidLoad
 {
-    return UIInterfaceOrientationMaskLandscapeRight;
+    [super viewDidLoad];
+    [self reloadStream];
+    
+    
 }
-
--(BOOL)shouldAutorotate
-{
-    return YES;
-}
-
 
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)reloadStream {
+    //[self.videoStream loadHTMLString:streamLocation baseURL:nil];
     
+    // create URL
+    NSString *fullURL = @"http://google.com";
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    // go to webpage
+    [self.videoStream loadRequest:requestObj];
+    
+}
+
+- (void) setTargetNumber:(uint8_t)targ {
+    currentTarget = targ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,22 +103,22 @@
 
 // method for setting laser to standby
 - (IBAction)laserStandbyPress:(id)sender {
-    
+    [lc writeLaserMode:1];
+    [lc writeTarget:currentTarget];
+    [lc sendLaserMessage];
 }
 
-// method for setting laser to low
-- (IBAction)laserLowPress:(id)sender {
-    
+- (IBAction)laserOffPress:(id)sender {
+    [lc writeLaserMode:0];
+    [lc writeTarget:currentTarget];
+    [lc sendLaserMessage];
 }
 
-// method for setting laser to high
-- (IBAction)laserHighPress:(id)sender {
-    
+- (IBAction)laserWarnPress:(id)sender {
+    [lc writeLaserMode:2];
+    [lc writeTarget:currentTarget];
+    [lc sendLaserMessage];
 }
 
-// method for toggling laser controls on and off
-- (IBAction)laserToggled:(UISwitch *)sender {
-    
-}
 
 @end
