@@ -77,14 +77,13 @@
         // cache in background
         self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
         
-        //[self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestYdouble, _southwestXdouble)) northEast:(makeCoordinate(_northeastYdouble, _northeastXdouble)) minZoom:(13) maxZoom: (15)];
+        [self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestYdouble, _southwestXdouble)) northEast:(makeCoordinate(_northeastYdouble, _northeastXdouble)) minZoom:(7) maxZoom: (16)];
         
         // block while caching?
         NSLog(@"Cache Begin");
         
         // disable cache button
         self.cacheButton.enabled = NO;
-        self.doneButton.enabled = YES;
         
         // set cache flag
         self.cached = YES;
@@ -105,7 +104,6 @@
         self.mi.missionHealthURL = self.missionHealthURL.text;
         self.mi.missionNortheast = makeCoordinate(_northeastXdouble, _northeastYdouble);
         self.mi.missionSouthwest = makeCoordinate(_southwestXdouble, _southwestYdouble);
-        self.mi.cache = nil;
         
         
         // get destination view controller

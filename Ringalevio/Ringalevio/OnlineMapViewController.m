@@ -78,16 +78,15 @@
         self.viewButton.enabled = NO;
         
         // set up mapbox
-        /*NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"mapbox" ofType:@"json"];
+        NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"Mapbox" ofType:@"json"];
         NSError *error = nil;
-        NSStringEncoding encoding1 = NULL;
-        NSString* tileJSON = [NSString stringWithContentsOfFile:fullPath encoding:encoding1 error:&error];
+        NSString* tileJSON = [NSString stringWithContentsOfFile:fullPath encoding:NSASCIIStringEncoding error:&error];
         
         // check error
         if (tileJSON == nil)
-            NSLog(@"error: %@", [error description]);*/
+            NSLog(@"error: %@", [error description]);
         
-        self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"461group.hocfjnai"];
+        self.mapSource = [[RMMapboxSource alloc] initWithTileJSON:tileJSON];
         
         RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:self.mapSource];
         

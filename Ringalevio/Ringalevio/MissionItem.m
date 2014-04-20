@@ -23,7 +23,6 @@
     [encoder encodeDouble:_missionNortheast.longitude forKey:@"missionNortheast_long"];
     [encoder encodeDouble:_missionSouthwest.latitude forKey:@"missionSouthwest_lat"];
     [encoder encodeDouble:_missionSouthwest.longitude forKey:@"missionSouthwest_long"];
-    [encoder encodeObject:_cache forKey:@"cache"];
 }
 
 // init constructor to create from encoded file
@@ -53,9 +52,6 @@
         coord_i.longitude = long_i;
         self.missionSouthwest = coord_i;
         
-        
-        // decode cache
-        self.cache = [decoder decodeObjectForKey:@"cache"];
     }
     return self;
 }

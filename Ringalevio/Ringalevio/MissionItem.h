@@ -22,8 +22,5 @@
 @property CLLocationCoordinate2D missionNortheast;
 @property CLLocationCoordinate2D missionSouthwest;
 
-// Mapbox cache system
-@property RMTileCache *cache;
-
 
 @end
