@@ -19,13 +19,40 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-oF-gbj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="776"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXV-qo-xOe">
+                                        <rect key="frame" x="51" y="382" width="219" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="Cache Maps"/>
+                                        <connections>
+                                            <action selector="cacheButtonPress:" destination="ASO-1M-d9q" eventType="touchDown" id="5S8-8x-haa"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7791" borderStyle="roundedRect" placeholder="Reference Point Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j2K-Gf-tCP">
+                                        <rect key="frame" x="20" y="301" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8691" borderStyle="roundedRect" placeholder="Reference Point Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avZ-sf-zpF">
+                                        <rect key="frame" x="20" y="339" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GB8-2j-g43">
+                                        <rect key="frame" x="232" y="387" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="State College Mission" borderStyle="roundedRect" placeholder="Mission Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="58i-9Q-A0j">
                                 <rect key="frame" x="20" y="72" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://192.168.23.41:8080/" borderStyle="roundedRect" placeholder="Mission Health URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rEB-hQ-jya">
                                 <rect key="frame" x="20" y="110" width="280" height="30"/>
@@ -33,11 +60,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eyE-Ta-T2z">
-                                <rect key="frame" x="150" y="356" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8867" borderStyle="roundedRect" placeholder="Southwest Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8967" borderStyle="roundedRect" placeholder="Southwest Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
                                 <rect key="frame" x="20" y="262" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -55,21 +78,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8536" borderStyle="roundedRect" placeholder="Northeast Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8436" borderStyle="roundedRect" placeholder="Northeast Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
                                 <rect key="frame" x="20" y="186" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXV-qo-xOe">
-                                <rect key="frame" x="51" y="311" width="219" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Cache Maps"/>
-                                <connections>
-                                    <action selector="cacheButtonPress:" destination="ASO-1M-d9q" eventType="touchDown" id="5S8-8x-haa"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </scrollView>
                     <navigationItem key="navigationItem" title="Mission Configuration" id="5o4-SI-WyW">
@@ -85,12 +99,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cacheButton" destination="bXV-qo-xOe" id="BcG-vG-eZy"/>
                         <outlet property="doneButton" destination="dfk-TL-xoY" id="gik-Ae-fR4"/>
                         <outlet property="missionHealthURL" destination="rEB-hQ-jya" id="KXp-3G-7oX"/>
                         <outlet property="missionName" destination="58i-9Q-A0j" id="xKI-2L-PBy"/>
                         <outlet property="northeastX" destination="tfS-Eh-YxE" id="Tmp-7k-bsV"/>
                         <outlet property="northeastY" destination="uDt-8V-enF" id="yZY-KO-pWY"/>
-                        <outlet property="progressSpinner" destination="eyE-Ta-T2z" id="UeY-r4-peS"/>
+                        <outlet property="progressSpinner" destination="GB8-2j-g43" id="tLE-ya-e1k"/>
+                        <outlet property="referencePointX" destination="j2K-Gf-tCP" id="Znu-aC-S5h"/>
+                        <outlet property="referencePointY" destination="avZ-sf-zpF" id="c8t-fp-BZI"/>
                         <outlet property="southwestX" destination="UCt-FZ-ppI" id="e1Q-Dl-9gf"/>
                         <outlet property="southwestY" destination="bQJ-dd-nhX" id="g6q-SI-mU8"/>
                     </connections>

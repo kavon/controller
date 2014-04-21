@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *northeastY;
 @property (weak, nonatomic) IBOutlet UITextField *southwestX;
 @property (weak, nonatomic) IBOutlet UITextField *southwestY;
+@property (weak, nonatomic) IBOutlet UITextField *referencePointX;
+@property (weak, nonatomic) IBOutlet UITextField *referencePointY;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *cacheButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressSpinner;
@@ -26,6 +28,9 @@
 @property double northeastYdouble;  //latitude
 @property double southwestXdouble;
 @property double southwestYdouble;
+@property double referencePointXdouble;
+@property double referencePointYdouble;
+
 
 @property RMTileCache* tileCache;
 @property RMMapboxSource* mapSource;
@@ -36,6 +41,97 @@
 @end
 
 @implementation AddMissionViewController
+
+// offset for keyboard; scrollfixes provided by internet
+#define kOFFSET_FOR_KEYBOARD 80.0
+
+-(void)keyboardWillShow {
+    // Animate the current view out of the way
+    if (self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)keyboardWillHide {
+    if (self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    if (([sender isEqual:self.northeastX]) || ([sender isEqual:self.northeastY]) || ([sender isEqual:self.southwestX]) || ([sender isEqual:self.southwestY]) || ([sender isEqual:self.referencePointX]) || ([sender isEqual:self.referencePointY]))
+    {
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+            [self setViewMovedUp:YES];
+        }
+    }
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,13 +162,17 @@
 // function to be called by "cache maps" button
 - (IBAction)cacheButtonPress:(id *)sender
 {
-    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0) && (self.cached != YES)) {
+    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0) && (self.cached != YES) && (self.referencePointX.text.length > 0) && (self.referencePointY.text.length > 0)) {
         
-        // set doubles from text boxes
+        // set doubles from text boxes (for coord usage)
         self.northeastXdouble = [[_northeastX text] doubleValue];
         self.northeastYdouble = [[_northeastY text] doubleValue];
         self.southwestXdouble = [[_southwestX text] doubleValue];
         self.southwestYdouble = [[_southwestY text] doubleValue];
+        
+        // get reference point coord values
+        self.referencePointXdouble = [[_referencePointX text] doubleValue];
+        self.referencePointYdouble = [[_referencePointY text] doubleValue];
         
         // cache in background
         self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
@@ -84,10 +184,11 @@
         
         // disable cache button
         self.cacheButton.enabled = NO;
-        
-        // set cache flag
-        self.cached = YES;
+        [self.progressSpinner startAnimating];
     }
+    else
+        NSLog(@"Not enough data in fields! Need indication here!");
+        return;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -104,6 +205,7 @@
         self.mi.missionHealthURL = self.missionHealthURL.text;
         self.mi.missionNortheast = makeCoordinate(_northeastXdouble, _northeastYdouble);
         self.mi.missionSouthwest = makeCoordinate(_southwestXdouble, _southwestYdouble);
+        self.mi.missionReferencePoint = makeCoordinate(_referencePointXdouble, _referencePointYdouble);
         
         
         // get destination view controller
@@ -124,6 +226,8 @@
 - (void)tileCacheDidFinishBackgroundCache:(RMTileCache *)tileCache
 {
     self.doneButton.enabled = YES;
+    self.cached = YES;
+    [self.progressSpinner stopAnimating];
 }
 
 // constructor for 2d coordinate for cache system

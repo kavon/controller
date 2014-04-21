@@ -23,6 +23,8 @@
     [encoder encodeDouble:_missionNortheast.longitude forKey:@"missionNortheast_long"];
     [encoder encodeDouble:_missionSouthwest.latitude forKey:@"missionSouthwest_lat"];
     [encoder encodeDouble:_missionSouthwest.longitude forKey:@"missionSouthwest_long"];
+    [encoder encodeDouble:_missionReferencePoint.latitude forKey:@"missionReferencePoint_lat"];
+    [encoder encodeDouble:_missionReferencePoint.longitude forKey:@"missionReferencePoint_long"];
 }
 
 // init constructor to create from encoded file
@@ -51,6 +53,14 @@
         coord_i.latitude = lat_i;
         coord_i.longitude = long_i;
         self.missionSouthwest = coord_i;
+        
+        // decode missionReferencePoint
+        lat_i = [decoder decodeDoubleForKey:@"missionReferencePoint_lat"];
+        long_i = [decoder decodeDoubleForKey:@"missionReferencePoint_long"];
+        
+        coord_i.latitude = lat_i;
+        coord_i.longitude = long_i;
+        self.missionReferencePoint = coord_i;
         
     }
     return self;
