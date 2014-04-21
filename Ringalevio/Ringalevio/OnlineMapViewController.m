@@ -12,6 +12,7 @@
 #import "OnlineMapViewController.h"
 #import "HealthViewController.h"
 #import "SensorViewController.h"
+#import "Network/HostReciever.h"
 #import <Mapbox/Mapbox.h>
 
 @interface OnlineMapViewController ()
@@ -31,6 +32,42 @@
 @end
 
 @implementation OnlineMapViewController
+{
+    NSLock *mutex;
+}
+
+/**
+ * Fields: @"sensor_id", @"x_position", @"y_position", "z_position"
+ */
+-(void) recievedSensorLocationMessage: (NSDictionary*) data
+{
+    
+}
+
+/**
+ * Fields: @"sensor_id", @"x_position", @"y_position", "z_position"
+ */
+-(void) recievedTrackSourceLocationMessage: (NSDictionary*) data
+{
+    
+}
+
+/**
+ * Fields: @"sensor_id", @"track_number", @"x_position", @"y_position", "z_position"
+ */
+-(void) recievedTrackUpdateMessage: (NSDictionary*) data
+{
+    
+}
+
+/**
+ * Fields: @"sensor_id", @"track_number"
+ */
+-(void) recievedTrackDropMessage: (NSDictionary*) data
+{
+    
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,6 +141,20 @@
         [mapView setZoom:14 atCoordinate:mapDefault animated:YES];
         
         self.navigationController.toolbarHidden = NO;
+        
+        
+        /////
+        // initialize map network recieving stuff.
+        /////
+        
+        mutex = [[NSLock alloc] init];
+        
+        // register this instance of a packet listerner with the host reciever.
+        // this should be the last thing done in this block.
+        [[HostReciever getInstance] registerListener:self.packetListener];
+        
+        
+        
         
         // add some sample markers
         RMAnnotation *annotation1 = [[RMAnnotation alloc] initWithMapView:mapView coordinate:mapView.centerCoordinate

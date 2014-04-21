@@ -16,6 +16,8 @@
 
 @interface OnlineMapViewController : UIViewController <RMMapViewDelegate>
 
+@property (weak) id <PacketListener> packetListener;
+
 // current mission item
 @property  MissionItem *mi;
 

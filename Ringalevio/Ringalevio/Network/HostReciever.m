@@ -7,6 +7,7 @@
 //
 
 #import "HostReciever.h"
+#import "Configuration.h"
 
 @implementation HostReciever
 {
@@ -30,10 +31,10 @@
     listenerList = [[NSMutableArray alloc] init];
     socky = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-    NSError* __autoreleasing err1 = [NSError errorWithDomain:@"Error binding to port 8121 for listening." code:1337 userInfo:nil];
-    NSError* __autoreleasing err2 = [NSError errorWithDomain:@"Error with beginRecieving on port 8121." code:1338 userInfo:nil];
+    NSError* __autoreleasing err1 = [NSError errorWithDomain:@"Error binding to port for listening." code:1337 userInfo:nil];
+    NSError* __autoreleasing err2 = [NSError errorWithDomain:@"Error with beginRecieving on port." code:1338 userInfo:nil];
     
-    [socky bindToPort:8121 error:&err1];
+    [socky bindToPort:LISTEN_PORT error:&err1];
     [socky beginReceiving:&err2];
     
     return self;
@@ -66,7 +67,7 @@
     }
     
     if((sum % 256) != packet[size-1]) {
-        //NSLog(@"Corrupt Packet.");
+        NSLog(@"Corrupt Packet.");
         return; // damaged goods.
     }
     
@@ -80,7 +81,7 @@
         // TRACK SOURCE LOCATION MESSAGE
         case 0x10:
             
-            //NSLog(@"got TRACK SOURCE LOCATION packet");
+            NSLog(@"got TRACK SOURCE LOCATION packet");
             
             [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];
@@ -98,7 +99,7 @@
         // TRACK UPDATE MESSAGE (SENSOR TRACK MESSAGE)
         case 0x11:
             
-            //NSLog(@"got TRACK UPDATE packet");
+            NSLog(@"got TRACK UPDATE packet");
             
             [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(packet[4])] forKey:@"track_number"];
@@ -118,7 +119,7 @@
         // TRACK/TARGET DROP MESSAGE
         case 0x12:
             
-            //NSLog(@"got TRACK DROP packet");
+            NSLog(@"got TRACK DROP packet");
             
             [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(packet[4])] forKey:@"track_number"];
@@ -134,7 +135,7 @@
         // SENSOR LOCATION MESSAGE
         case 0x20:
             
-            //NSLog(@"got SENSOR LOCATION packet");
+            NSLog(@"got SENSOR LOCATION packet");
             
             [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];
@@ -151,7 +152,7 @@
             
         default:
             // this probably might get flooded. we're just silently dropping it anyway.
-            //NSLog(@"Invalid message type recieved from host.");
+            NSLog(@"Invalid message type recieved from host.");
             return;
     }
     

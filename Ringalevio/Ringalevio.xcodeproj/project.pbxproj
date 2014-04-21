@@ -27,6 +27,7 @@
 		891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FB118C2A323000BC197 /* DeviceMessenger.m */; };
 		8994231C18F3796E008DD3FB /* HostReciever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994231B18F3796E008DD3FB /* HostReciever.m */; };
 		89DBD49F19047B7C00B6EBE5 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBD49E19047B7C00B6EBE5 /* Configuration.m */; };
+		89DBD4FD1904CC6200B6EBE5 /* TrackedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */; };
 		89DF249D18D51D100082A63B /* AddMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF249C18D51D100082A63B /* AddMissionViewController.m */; };
 		89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */; };
 		89EAA98018DDF3820029FA8F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EAA97F18DDF3820029FA8F /* Mapbox.framework */; };
@@ -89,6 +90,8 @@
 		8994231B18F3796E008DD3FB /* HostReciever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HostReciever.m; path = Network/HostReciever.m; sourceTree = "<group>"; };
 		89DBD49D19047B7C00B6EBE5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Network/Configuration.h; sourceTree = "<group>"; };
 		89DBD49E19047B7C00B6EBE5 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Network/Configuration.m; sourceTree = "<group>"; };
+		89DBD4FB1904CC6200B6EBE5 /* TrackedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackedObject.h; sourceTree = "<group>"; };
+		89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackedObject.m; sourceTree = "<group>"; };
 		89DF249B18D51D100082A63B /* AddMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMissionViewController.h; sourceTree = "<group>"; };
 		89DF249C18D51D100082A63B /* AddMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMissionViewController.m; sourceTree = "<group>"; };
 		89EAA97C18DDF28B0029FA8F /* OnlineMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMapViewController.h; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				8919122C189601F10039CE3D /* AppDelegate.m */,
 				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
 				C2A648E618D107B100D7F1A1 /* MissionItem.m */,
+				89DBD4FB1904CC6200B6EBE5 /* TrackedObject.h */,
+				89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */,
 				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
@@ -375,6 +380,7 @@
 				8919122D189601F10039CE3D /* AppDelegate.m in Sources */,
 				8909203118D63EBC00D03CF4 /* SensorViewController.m in Sources */,
 				891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */,
+				89DBD4FD1904CC6200B6EBE5 /* TrackedObject.m in Sources */,
 				89DF249D18D51D100082A63B /* AddMissionViewController.m in Sources */,
 				C206DD631900863100A17C90 /* AddTrackViewController.m in Sources */,
 			);
