@@ -19,21 +19,23 @@
     double longitude;
     double altitude;
     int ident;
-    
+    NSDate *lastUpdate;
+    RMAnnotation *annotation;
 }
 
 -(void) doBasicInit {
     mutex = [[NSRecursiveLock alloc] init];
-    ident = -1;
     x = 0;
     y = 0;
     z = 0;
     latitude = 0.0;
     longitude = 0.0;
     altitude = 0.0;
+    ident = 0;
+    annotation = nil;
 }
 
-// 0 should be used for the sensor
+// negative values should be used for the sensor/track src
 -(id)initWithID: (int) idental {
     
     if( self = [super init] ) {
@@ -45,9 +47,8 @@
     return self;
 }
 
-// id will be initialized to -1, since that's invalid.
-// be careful because that's 0xFF if casted to a byte.
 // use this for the fixed reference point.
+// do not use the id
 -(id)initFixedLat: (double) lati andLong: (double) longi andAlt: (double) altidude {
     
     if( self = [super init] ) {
@@ -133,15 +134,34 @@
     [mutex unlock];
 }
 
+-(void) refreshTimestamp {
+    [mutex lock];
+    lastUpdate = [NSDate date];
+    [mutex unlock];
+}
+
+-(NSDate*) getTimestamp {
+    [mutex lock];
+    NSDate *copy = lastUpdate;
+    [mutex unlock];
+    return copy;
+}
+
+-(void) setAnnotation: (RMAnnotation*) anno {
+    [mutex lock];
+    annotation = anno;
+    [mutex unlock];
+}
+
+-(RMAnnotation*) getAnnotation {
+    [mutex lock];
+    RMAnnotation *copy = annotation;
+    [mutex unlock];
+    return copy;
+}
+
 // must call this to update this track's position if you modify its offsets.
 -(void) updatePosition: (TrackedObject*) refPt {
-    
-    if (ident == -1) {
-        // this is a reference point, you're not allowed to update it!
-        NSLog(@"Reference Points are not allowed to be updated!");
-        return;
-    }
-    
     [mutex lock];
     
     // We're manually aquiring a full object lock during this update on the refPt.

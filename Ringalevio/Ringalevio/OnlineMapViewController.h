@@ -14,9 +14,7 @@
 #import "MissionItem.h"
 #import "PacketListener.h"
 
-@interface OnlineMapViewController : UIViewController <RMMapViewDelegate>
-
-@property (weak) id <PacketListener> packetListener;
+@interface OnlineMapViewController : UIViewController <RMMapViewDelegate, PacketListener>
 
 // current mission item
 @property  MissionItem *mi;

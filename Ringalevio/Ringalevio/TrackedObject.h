@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mapbox/Mapbox.h>
 
 @interface TrackedObject : NSObject
 
@@ -39,6 +40,14 @@
 
 // must call this to update this track's position if you modify its offsets.
 -(void) updatePosition: (TrackedObject*) refPt;
+
+-(void) refreshTimestamp;
+
+-(NSDate*) getTimestamp;
+
+-(void) setAnnotation: (RMAnnotation*) anno;
+
+-(RMAnnotation*) getAnnotation;
 
 // for consistency guarentees in updatePosition, don't touch.
 

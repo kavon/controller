@@ -13,6 +13,7 @@
 #import "HealthViewController.h"
 #import "SensorViewController.h"
 #import "Network/HostReciever.h"
+#import "TrackedObject.h"
 #import <Mapbox/Mapbox.h>
 
 @interface OnlineMapViewController ()
@@ -34,6 +35,10 @@
 @implementation OnlineMapViewController
 {
     NSLock *mutex;
+    TrackedObject *permRef; //id is irrelevant
+    // sensors/tracks are non-positive values
+    NSMutableArray *mapItems;
+    RMMapView *mapView;
 }
 
 /**
@@ -41,7 +46,41 @@
  */
 -(void) recievedSensorLocationMessage: (NSDictionary*) data
 {
+    [mutex lock];
+
+    int32_t theID = (int32_t)[data valueForKey:@"sensor_id"];
+    theID = -theID; // it's not a track, don't drop it due to inactivity.
+    TrackedObject *td = nil;
+    for(int i = 0; i < [mapItems count]; i++) {
+        if([[mapItems objectAtIndex:i] getID] == theID) {
+            td = [mapItems objectAtIndex:i];
+        }
+    }
     
+    // we gotta make a new one.
+    if(td == nil) {
+        td = [[TrackedObject alloc] initWithID:theID];
+        [mapItems addObject:td];
+    }
+    
+    [td setX:(int32_t)[data valueForKey:@"x_position"]];
+    [td setY:(int32_t)[data valueForKey:@"y_position"]];
+    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td updatePosition:permRef];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
+    
+    // gotta make onea these too.
+    RMAnnotation *annotation = [td getAnnotation];
+    if(annotation == nil) {
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView coordinate:coord andTitle:[NSString stringWithFormat:@"Sensor %d", theID]];
+        annotation.annotationType = @"sensor";
+        [td setAnnotation:annotation];
+        [mapView addAnnotation:annotation];
+    } else {
+        [annotation setCoordinate:coord];
+    }
+    
+    [mutex unlock];
 }
 
 /**
@@ -49,7 +88,41 @@
  */
 -(void) recievedTrackSourceLocationMessage: (NSDictionary*) data
 {
+    [mutex lock];
     
+    int32_t theID = (int32_t)[data valueForKey:@"sensor_id"];
+    theID = -theID; // it's not a track, don't drop it due to inactivity.
+    TrackedObject *td = nil;
+    for(int i = 0; i < [mapItems count]; i++) {
+        if([[mapItems objectAtIndex:i] getID] == theID) {
+            td = [mapItems objectAtIndex:i];
+        }
+    }
+    
+    // we gotta make a new one.
+    if(td == nil) {
+        td = [[TrackedObject alloc] initWithID:theID];
+        [mapItems addObject:td];
+    }
+    
+    [td setX:(int32_t)[data valueForKey:@"x_position"]];
+    [td setY:(int32_t)[data valueForKey:@"y_position"]];
+    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td updatePosition:permRef];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
+    
+    // gotta make onea these too.
+    RMAnnotation *annotation = [td getAnnotation];
+    if(annotation == nil) {
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView coordinate:coord andTitle:[NSString stringWithFormat:@"Track Source %d", theID]];
+        annotation.annotationType = @"sensor";
+        [td setAnnotation:annotation];
+        [mapView addAnnotation:annotation];
+    } else {
+        [annotation setCoordinate:coord];
+    }
+    
+    [mutex unlock];
 }
 
 /**
@@ -57,7 +130,45 @@
  */
 -(void) recievedTrackUpdateMessage: (NSDictionary*) data
 {
+    // TODO: THE SENSOR THAT IS ASSOCIATED TO THE TRACK IS CURRENTLY UNIMPLEMENTED.
+    // WE ASSUME ONE SENSOR RIGHT NOW.
     
+    [mutex lock];
+    
+    int32_t theID = (int32_t)[data valueForKey:@"track_number"];
+    TrackedObject *td = nil;
+    for(int i = 0; i < [mapItems count]; i++) {
+        if([[mapItems objectAtIndex:i] getID] == theID) {
+            td = [mapItems objectAtIndex:i];
+        }
+    }
+    
+    // we gotta make a new one.
+    if(td == nil) {
+        td = [[TrackedObject alloc] initWithID:theID];
+        [mapItems addObject:td];
+    }
+    
+    [td setX:(int32_t)[data valueForKey:@"x_position"]];
+    [td setY:(int32_t)[data valueForKey:@"y_position"]];
+    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td updatePosition:permRef];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
+    
+    // gotta make onea these too.
+    RMAnnotation *annotation = [td getAnnotation];
+    if(annotation == nil) {
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView coordinate:coord andTitle:[NSString stringWithFormat:@"Track %d", theID]];
+        annotation.annotationType = @"track";
+        [td setAnnotation:annotation];
+        [mapView addAnnotation:annotation]; // TODO: might be unnessecary.
+    } else {
+        [annotation setCoordinate:coord];
+    }
+    
+    [td refreshTimestamp]; // track's can expire.
+    
+    [mutex unlock];
 }
 
 /**
@@ -65,7 +176,26 @@
  */
 -(void) recievedTrackDropMessage: (NSDictionary*) data
 {
+    int32_t theID = (int32_t)[data valueForKey:@"track_number"];
+    [self removeTrackID:theID];
+}
+
+-(void) removeTrackID: (int32_t) theID {
+    [mutex lock];
+    TrackedObject *td = nil;
+    int i = 0;
+    for(; i < [mapItems count]; i++) {
+        if([[mapItems objectAtIndex:i] getID] == theID) {
+            td = [mapItems objectAtIndex:i];
+        }
+    }
     
+    if (td != nil) {
+        [mapView removeAnnotation:[td getAnnotation]];
+        [mapItems removeObjectAtIndex:i];
+    }
+    
+    [mutex unlock];
 }
 
 
@@ -128,7 +258,7 @@
         
         self.mapSource = [[RMMapboxSource alloc] initWithTileJSON:tileJSON];
         
-        RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:self.mapSource];
+        mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:self.mapSource];
         
         mapView.Delegate = self;
         
@@ -149,30 +279,14 @@
         
         mutex = [[NSLock alloc] init];
         
+        permRef = [[TrackedObject alloc] initFixedLat:[self.mi missionReferencePoint].latitude andLong:[self.mi missionReferencePoint].longitude andAlt:[self.mi missionReferencePointAltitude]];
+        
+        mapItems = [[NSMutableArray alloc] init];
+        
         // register this instance of a packet listerner with the host reciever.
         // this should be the last thing done in this block.
-        [[HostReciever getInstance] registerListener:self.packetListener];
+        [[HostReciever getInstance] registerListener:self];
         
-        
-        
-        
-        // add some sample markers
-        RMAnnotation *annotation1 = [[RMAnnotation alloc] initWithMapView:mapView coordinate:mapView.centerCoordinate
-                                                                          andTitle:@"Sensor"];
-        annotation1.annotationType = @"sensor";
-        
-        [mapView addAnnotation:annotation1];
-        
-        
-        RMAnnotation *annotation2 = [[RMAnnotation alloc] initWithMapView:mapView coordinate:CLLocationCoordinate2DMake(annotation1.coordinate.latitude + 0.00005, annotation1.coordinate.longitude - 0.003) andTitle:@"Track 1"];
-        annotation2.annotationType = @"track";
-        
-        [mapView addAnnotation:annotation2];
-        
-        RMAnnotation *annotation3 = [[RMAnnotation alloc] initWithMapView:mapView coordinate:CLLocationCoordinate2DMake(annotation1.coordinate.latitude + 0.0024, annotation1.coordinate.longitude - 0.0016) andTitle:@"Track 2"];
-        annotation3.annotationType = @"track";
-        
-        [mapView addAnnotation:annotation3];
     }
 
 // method that controls the annotation layer styling

@@ -61,22 +61,25 @@
     // verify checksum. if it fails, we drop it like it's hawt
     int sum = 0;
     unsigned long size = [data length];
+    NSLog(@"Size of packet: %lu", size);
     uint8_t *packet = malloc(size);
+    [data getBytes:packet length:size];
     for(unsigned long i = 0; i < size-1; i++) {
         sum += packet[i];
     }
     
     if((sum % 256) != packet[size-1]) {
-        NSLog(@"Corrupt Packet.");
+        NSLog(@"Corrupt Packet. %d vs %d", (sum % 256), packet[size-1]);
         return; // damaged goods.
     }
     
     if(packet[2] != 0x0) {
         // this is not an original message. NOPE
+        NSLog(@"Not an origional message, NOPE");
         return;
     }
     
-    NSDictionary *message = [[NSDictionary alloc] init];
+    NSMutableDictionary *message = [[NSMutableDictionary alloc] init];
     switch(packet[0]) {
         // TRACK SOURCE LOCATION MESSAGE
         case 0x10:
