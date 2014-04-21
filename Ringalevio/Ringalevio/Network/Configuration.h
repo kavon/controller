@@ -17,10 +17,10 @@ extern NSString * const SERVER_ADDR;
 extern NSString * const STREAM_ADDR;
 
 // port the server listens for packets from iOS on.
-extern int const SERVER_RCV_PORT;
+extern int const DEST_PORT;
 
 // port the server sends packets to iOS on.
-extern int const SERVER_TXMT_PORT;
+extern int const LISTEN_PORT;
 
 
 @end

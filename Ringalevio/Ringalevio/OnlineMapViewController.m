@@ -58,6 +58,7 @@
     if ([segue.identifier  isEqual: @"sensorSegue"]) {
         SensorViewController *svc = [segue destinationViewController];
         svc.mi = self.mi;
+        // TODO: THE TRACK NUMBER NEEDS TO BE SET IN THE SVC
     }
     
     else

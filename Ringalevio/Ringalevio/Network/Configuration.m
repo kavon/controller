@@ -16,9 +16,9 @@ NSString * const SERVER_ADDR = @"192.168.23.41";
 NSString * const STREAM_ADDR = @"192.168.23.35";
 
 // port the server listens for packets from iOS on.
-int const SERVER_RCV_PORT = 8131;
+int const DEST_PORT = 8131;
 
 // port the server sends packets to iOS on.
-int const SERVER_TXMT_PORT = 8121;
+int const LISTEN_PORT = 8121;
 
 @end

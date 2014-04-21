@@ -38,9 +38,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        lc = [[LaserController alloc] init:SERVER_ADDR :SERVER_RCV_PORT];
+        // THIS SHIT DOESN'T EVEN GET CALLED BY THE UI BUILDER'S CODE
         
-        currentTarget = 0;
         
         //CGRect f = self.view.bounds;
         
@@ -57,8 +56,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self reloadStream];
+    lc = [[LaserController alloc] init:SERVER_ADDR :DEST_PORT];
     
+    // we're going to tell the sensor to "look" at this target now.
+    [lc writeLaserMode:0];
+    [lc writeTarget:currentTarget];
+    [lc sendLaserMessage];
+    
+    [self reloadStream];
     
 }
 

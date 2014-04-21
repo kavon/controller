@@ -58,6 +58,7 @@
  *
  */
 -(void) send :(void*) message :(long) numBytes {
+    NSLog(@"Preparing to send datagram tag %ld", lastTag);
     NSData *copy = [[NSData alloc] initWithBytes:message length:numBytes];
     [messageList setObject:copy forKey: [NSNumber numberWithLong:lastTag]];
     
