@@ -72,7 +72,7 @@
     // gotta make onea these too.
     RMAnnotation *annotation = [td getAnnotation];
     if(annotation == nil) {
-        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView coordinate:coord andTitle:[NSString stringWithFormat:@"Sensor %d", theID]];
+        annotation = [[RMAnnotation alloc] initWithMapView:mapView coordinate:coord andTitle:[NSString stringWithFormat:@"Sensor %d", theID]];
         annotation.annotationType = @"sensor";
         [td setAnnotation:annotation];
         [mapView addAnnotation:annotation];
@@ -135,7 +135,7 @@
     
     [mutex lock];
     
-    int32_t theID = (int32_t)[data valueForKey:@"track_number"];
+    int32_t theID = [[data valueForKey:@"track_number"] intValue];
     TrackedObject *td = nil;
     for(int i = 0; i < [mapItems count]; i++) {
         if([[mapItems objectAtIndex:i] getID] == theID) {
@@ -149,9 +149,9 @@
         [mapItems addObject:td];
     }
     
-    [td setX:(int32_t)[data valueForKey:@"x_position"]];
-    [td setY:(int32_t)[data valueForKey:@"y_position"]];
-    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td setX:[[data valueForKey:@"x_position"] intValue]];
+    [td setY:[[data valueForKey:@"y_position"] intValue]];
+    [td setZ:[[data valueForKey:@"z_position"] intValue]];
     [td updatePosition:permRef];
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
     
@@ -268,7 +268,7 @@
         CLLocationCoordinate2D mapDefault = CLLocationCoordinate2DMake((self.mi.missionNortheast.longitude + self.mi.missionSouthwest.longitude)/2,(self.mi.missionNortheast.latitude + self.mi.missionSouthwest.latitude)/2);
         
         // set zoom
-        [mapView setZoom:14 atCoordinate:mapDefault animated:YES];
+        [mapView setZoom:12 atCoordinate:mapDefault animated:YES];
         
         self.navigationController.toolbarHidden = NO;
         
