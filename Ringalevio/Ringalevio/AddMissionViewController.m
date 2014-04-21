@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *southwestY;
 @property (weak, nonatomic) IBOutlet UITextField *referencePointX;
 @property (weak, nonatomic) IBOutlet UITextField *referencePointY;
+@property (weak, nonatomic) IBOutlet UITextField *referencePointAlt;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *cacheButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressSpinner;
@@ -30,6 +31,7 @@
 @property double southwestYdouble;
 @property double referencePointXdouble;
 @property double referencePointYdouble;
+@property double referencePointAltdouble;
 
 
 @property RMTileCache* tileCache;
@@ -43,7 +45,7 @@
 @implementation AddMissionViewController
 
 // offset for keyboard; scrollfixes provided by internet
-#define kOFFSET_FOR_KEYBOARD 80.0
+#define kOFFSET_FOR_KEYBOARD 100.0
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way
@@ -70,7 +72,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-    if (([sender isEqual:self.northeastX]) || ([sender isEqual:self.northeastY]) || ([sender isEqual:self.southwestX]) || ([sender isEqual:self.southwestY]) || ([sender isEqual:self.referencePointX]) || ([sender isEqual:self.referencePointY]))
+    if (([sender isEqual:self.northeastX]) || ([sender isEqual:self.northeastY]) || ([sender isEqual:self.southwestX]) || ([sender isEqual:self.southwestY]) || ([sender isEqual:self.referencePointX]) || ([sender isEqual:self.referencePointY]) || ([sender isEqual:self.referencePointAlt]))
     {
         //move the main view, so that the keyboard does not hide it.
         if  (self.view.frame.origin.y >= 0)
@@ -162,7 +164,7 @@
 // function to be called by "cache maps" button
 - (IBAction)cacheButtonPress:(id *)sender
 {
-    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0) && (self.cached != YES) && (self.referencePointX.text.length > 0) && (self.referencePointY.text.length > 0)) {
+    if ((self.northeastX.text.length > 0) && (self.northeastY.text.length > 0) && (self.southwestX.text.length > 0)&& (self.southwestY.text.length > 0) && (self.cached != YES) && (self.referencePointX.text.length > 0) && (self.referencePointY.text.length > 0) && (self.referencePointAlt.text.length > 0)) {
         
         // set doubles from text boxes (for coord usage)
         self.northeastXdouble = [[_northeastX text] doubleValue];
@@ -173,6 +175,7 @@
         // get reference point coord values
         self.referencePointXdouble = [[_referencePointX text] doubleValue];
         self.referencePointYdouble = [[_referencePointY text] doubleValue];
+        self.referencePointAltdouble = [[_referencePointAlt text] doubleValue];
         
         // cache in background
         self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"djtsex.heamjmoi"];
@@ -206,6 +209,7 @@
         self.mi.missionNortheast = makeCoordinate(_northeastXdouble, _northeastYdouble);
         self.mi.missionSouthwest = makeCoordinate(_southwestXdouble, _southwestYdouble);
         self.mi.missionReferencePoint = makeCoordinate(_referencePointXdouble, _referencePointYdouble);
+        self.mi.missionReferencePointAltitude = self.referencePointAltdouble;
         
         
         // get destination view controller

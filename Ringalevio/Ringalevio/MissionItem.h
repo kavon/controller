@@ -22,8 +22,9 @@
 @property CLLocationCoordinate2D missionNortheast;
 @property CLLocationCoordinate2D missionSouthwest;
 
-// mission-specific reference point
+// mission-specific reference point (including altitude)
 @property CLLocationCoordinate2D missionReferencePoint;
+@property double missionReferencePointAltitude;
 
 
 @end

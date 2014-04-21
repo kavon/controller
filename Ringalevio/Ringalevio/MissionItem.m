@@ -17,6 +17,7 @@
 
 // encoder to serialize missionItem entirely
 - (void)encodeWithCoder:(NSCoder *)encoder {
+    // set up encoder for saving the various fields of missionItem
     [encoder encodeObject:_missionName forKey:@"missionName"];
     [encoder encodeObject:_missionHealthURL forKey:@"missionHealthURL"];
     [encoder encodeDouble:_missionNortheast.latitude forKey:@"missionNortheast_lat"];
@@ -25,6 +26,8 @@
     [encoder encodeDouble:_missionSouthwest.longitude forKey:@"missionSouthwest_long"];
     [encoder encodeDouble:_missionReferencePoint.latitude forKey:@"missionReferencePoint_lat"];
     [encoder encodeDouble:_missionReferencePoint.longitude forKey:@"missionReferencePoint_long"];
+    [encoder encodeDouble:_missionReferencePointAltitude forKey:@"missionReferencePoint_alt"];
+    
 }
 
 // init constructor to create from encoded file
@@ -61,6 +64,8 @@
         coord_i.latitude = lat_i;
         coord_i.longitude = long_i;
         self.missionReferencePoint = coord_i;
+        
+        self.missionReferencePointAltitude = [decoder decodeDoubleForKey:@"missionReferencePoint_alt"];
         
     }
     return self;
