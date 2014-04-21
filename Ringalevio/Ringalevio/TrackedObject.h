@@ -15,21 +15,35 @@
 
 // id will be initialized to -1, since that's invalid.
 // be careful because that's 0xFF if casted to a byte.
--(id)initFixedLat: (double) latitude andLong: (double) longi;
+-(id)initFixedLat: (double) lati andLong: (double) longi andAlt: (double) altidude;
 
 -(int) getID;
 
--(void) setX:(uint32_t) x;
+-(void) setX:(uint32_t) xPos;
 
--(void) setY:(uint32_t) y;
+-(void) setY:(uint32_t) yPos;
 
--(void) setZ:(uint32_t) z;
+-(void) setZ:(uint32_t) zPos;
+
+-(uint32_t) getX;
+
+-(uint32_t) getY;
+
+-(uint32_t) getZ;
 
 -(double) getLatitude;
 
 -(double) getLongitude;
 
+-(double) getAltitude;
+
 // must call this to update this track's position if you modify its offsets.
--(void) updatePosition: (TrackedObject*) usingReferencePoint;
+-(void) updatePosition: (TrackedObject*) refPt;
+
+// for consistency guarentees in updatePosition, don't touch.
+
+-(void) lock;
+
+-(void) unlock;
 
 @end
