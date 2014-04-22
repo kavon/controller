@@ -392,27 +392,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUt-FP-rwF">
-                                <rect key="frame" x="0.0" y="63" width="320" height="462"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PxN-ll-uVn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0WA-wj-Vba">
+                                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="P2I-Qi-vEp"/>
+                                            <barButtonItem title="Add Track" id="MTZ-LP-yEp">
+                                                <connections>
+                                                    <action selector="AddTrackButtonPress:" destination="Yr7-5L-V1o" id="Ecz-C4-HVj"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="5mc-rO-FYn"/>
+                                            <barButtonItem title="Cancel" id="FjN-kf-THS"/>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="CdT-Mr-AFN"/>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="S3L-A5-ggL"/>
-                        <barButtonItem title="Add Track" id="vm3-mi-fqL">
-                            <connections>
-                                <action selector="AddTrackButtonPress:" destination="Yr7-5L-V1o" id="1kh-ui-bpf"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mJm-xb-A9a"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Track" id="BKO-L7-Ax5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="tYZ-hA-bua"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addTrackButton" destination="vm3-mi-fqL" id="AZI-yD-ojL"/>
+                        <outlet property="addTrackButton" destination="MTZ-LP-yEp" id="upr-hA-6r4"/>
                         <outlet property="cameraView" destination="rUt-FP-rwF" id="uPK-5s-JCN"/>
+                        <outlet property="overlayView" destination="PxN-ll-uVn" id="jCO-LQ-pGz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-Tu-2X3" userLabel="First Responder" sceneMemberID="firstResponder"/>

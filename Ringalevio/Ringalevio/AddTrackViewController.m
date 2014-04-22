@@ -10,7 +10,8 @@
 
 @interface AddTrackViewController ()
 
-// new track button item
+// UI elements
+@property (weak, nonatomic) IBOutlet UIView *overlayView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addTrackButton;
 
 // method for pressing "new track"
@@ -56,7 +57,7 @@
         
         // init overlay for camera (default won't do for us, no pictures allowed)
         //self.cameraOverlay = [[CameraOverlayViewController alloc] initWithNibName:@"cameraOverlay" bundle:nil];
-        //self.pickerController.cameraOverlayView = self.cameraOverlay.view;
+        self.pickerController.cameraOverlayView = self.overlayView;
             
         [self presentViewController:self.pickerController animated:YES completion:NULL];
     }
