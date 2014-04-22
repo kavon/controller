@@ -58,7 +58,6 @@
         // init overlay for camera (default won't do for us, no pictures allowed)
         self.pickerController.showsCameraControls = NO;
         
-        [[NSBundle mainBundle] loadNibNamed:@"overlayView" owner:self options:nil];
         self.overlayView.frame = self.pickerController.cameraOverlayView.frame;
         self.pickerController.cameraOverlayView = self.overlayView;
         self.overlayView = nil;
