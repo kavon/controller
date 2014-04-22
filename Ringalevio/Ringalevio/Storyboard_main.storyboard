@@ -400,9 +400,9 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="S3L-A5-ggL"/>
-                        <barButtonItem title="New Track" id="vm3-mi-fqL">
+                        <barButtonItem title="Add Track" id="vm3-mi-fqL">
                             <connections>
-                                <action selector="NewTrackButtonPress:" destination="Yr7-5L-V1o" id="a5W-yC-5V6"/>
+                                <action selector="AddTrackButtonPress:" destination="Yr7-5L-V1o" id="1kh-ui-bpf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="mJm-xb-A9a"/>
@@ -411,8 +411,8 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="tYZ-hA-bua"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addTrackButton" destination="vm3-mi-fqL" id="AZI-yD-ojL"/>
                         <outlet property="cameraView" destination="rUt-FP-rwF" id="uPK-5s-JCN"/>
-                        <outlet property="newTrackButton" destination="vm3-mi-fqL" id="Uba-5H-zvx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-Tu-2X3" userLabel="First Responder" sceneMemberID="firstResponder"/>
