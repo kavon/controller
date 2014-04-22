@@ -49,7 +49,7 @@
         self.pickerController.toolbarHidden = YES;
         
         // init overlay for camera (default won't do for us, no pictures allowed)
-        self.cameraOverlay = [[CameraOverlayViewController alloc] initWithNibName:@"cameraOverlay" bundle:nil];
+        //self.cameraOverlay = [[CameraOverlayViewController alloc] initWithNibName:@"cameraOverlay" bundle:nil];
         self.pickerController.cameraOverlayView = self.cameraOverlay.view;
             
         [self presentViewController:self.pickerController animated:YES completion:NULL];
