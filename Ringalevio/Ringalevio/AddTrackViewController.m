@@ -10,6 +10,12 @@
 
 @interface AddTrackViewController ()
 
+// new track button item
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *newTrackButton;
+
+// method for pressing "new track"
+- (IBAction)NewTrackButtonPress:(id)sender;
+
 @end
 
 @implementation AddTrackViewController
@@ -75,4 +81,6 @@
 
 // add track button method (network packet send goes here)
 
+- (IBAction)NewTrackButtonPress:(id)sender {
+}
 @end

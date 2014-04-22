@@ -398,11 +398,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="S3L-A5-ggL"/>
+                        <barButtonItem title="New Track" id="vm3-mi-fqL">
+                            <connections>
+                                <action selector="NewTrackButtonPress:" destination="Yr7-5L-V1o" id="a5W-yC-5V6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mJm-xb-A9a"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Add Track" id="BKO-L7-Ax5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="tYZ-hA-bua"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="rUt-FP-rwF" id="uPK-5s-JCN"/>
+                        <outlet property="newTrackButton" destination="vm3-mi-fqL" id="Uba-5H-zvx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-Tu-2X3" userLabel="First Responder" sceneMemberID="firstResponder"/>
