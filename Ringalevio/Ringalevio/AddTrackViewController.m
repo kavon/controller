@@ -56,11 +56,33 @@
         self.pickerController.toolbarHidden = YES;
         
         // init overlay for camera (default won't do for us, no pictures allowed)
-        //self.cameraOverlay = [[CameraOverlayViewController alloc] initWithNibName:@"cameraOverlay" bundle:nil];
+        self.pickerController.showsCameraControls = NO;
+        
+        [[NSBundle mainBundle] loadNibNamed:@"overlayView" owner:self options:nil];
+        self.overlayView.frame = self.pickerController.cameraOverlayView.frame;
         self.pickerController.cameraOverlayView = self.overlayView;
-            
-        [self presentViewController:self.pickerController animated:YES completion:NULL];
+        self.overlayView = nil;
+        
+        // Device's screen size (ignoring rotation intentionally):
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        int heightOffset = 0;
+        
+        float cameraAspectRatio = 4.0 / 3.0; //! Note: 4.0 and 4.0 works
+        float imageWidth = floorf(screenSize.width * cameraAspectRatio);
+        float scale = ceilf(((screenSize.height + heightOffset) / imageWidth) * 10.0) / 10.0;
+        
+        self.pickerController.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
+
     }
+}
+
+// call camera
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self presentViewController:self.pickerController animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
