@@ -11,11 +11,7 @@
 @interface AddTrackViewController ()
 
 // UI elements
-@property (weak, nonatomic) IBOutlet UIView *overlayView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addTrackButton;
-
-// method for pressing "new track"
-- (IBAction)AddTrackButtonPress:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *overlayView;
 
 @end
 
@@ -56,32 +52,30 @@
         self.pickerController.toolbarHidden = YES;
         
         // init overlay for camera (default won't do for us, no pictures allowed)
-        self.pickerController.showsCameraControls = NO;
+        self.overlayView = [[CameraOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
         
-        self.overlayView.frame = self.pickerController.cameraOverlayView.frame;
+        
+        // set custom overlay
         self.pickerController.cameraOverlayView = self.overlayView;
-        self.overlayView = nil;
         
-        // Device's screen size (ignoring rotation intentionally):
+        // set size of camera
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        
         int heightOffset = 0;
         
         float cameraAspectRatio = 4.0 / 3.0; //! Note: 4.0 and 4.0 works
         float imageWidth = floorf(screenSize.width * cameraAspectRatio);
         float scale = ceilf(((screenSize.height + heightOffset) / imageWidth) * 10.0) / 10.0;
-        
         self.pickerController.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
 
     }
 }
 
-// call camera
+// call camera when view has loaded
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self presentViewController:self.pickerController animated:NO completion:nil];
+    [self presentViewController:self.pickerController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,8 +95,10 @@
 }
 */
 
-// add track button method (network packet send goes here)
-
-- (IBAction)AddTrackButtonPress:(id)sender {
+// CameraOverlayDelegate function
+-(void) CancelButtonPress:(id)sender
+{
+    [self performSegueWithIdentifier:@"AddTrackSegueToMap" sender:self];
 }
+
 @end
