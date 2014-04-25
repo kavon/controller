@@ -12,9 +12,9 @@
 {
     // this is needed in case one thread updates this track while another tries to read it
     NSRecursiveLock *mutex;
-    uint32_t x;
-    uint32_t y;
-    uint32_t z;
+    int32_t x;
+    int32_t y;
+    int32_t z;
     double latitude;
     double longitude;
     double altitude;
@@ -66,39 +66,39 @@
     return ident;
 }
 
--(void) setX:(uint32_t) xPos {
+-(void) setX:(int32_t) xPos {
     [mutex lock];
     x = xPos;
     [mutex unlock];
 }
 
--(void) setY:(uint32_t) yPos {
+-(void) setY:(int32_t) yPos {
     [mutex lock];
     y = yPos;
     [mutex unlock];
 }
 
--(void) setZ:(uint32_t) zPos {
+-(void) setZ:(int32_t) zPos {
     [mutex lock];
     z = zPos;
     [mutex unlock];
 }
 
--(uint32_t) getX {
+-(int32_t) getX {
     [mutex lock];
     uint32_t copy = x;
     [mutex unlock];
     return copy;
 }
 
--(uint32_t) getY {
+-(int32_t) getY {
     [mutex lock];
     uint32_t copy = y;
     [mutex unlock];
     return copy;
 }
 
--(uint32_t) getZ {
+-(int32_t) getZ {
     [mutex lock];
     uint32_t copy = z;
     [mutex unlock];

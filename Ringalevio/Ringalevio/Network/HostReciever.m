@@ -86,7 +86,7 @@
             
             NSLog(@"got TRACK SOURCE LOCATION packet");
             
-            [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+8)))] forKey:@"y_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+12)))] forKey:@"z_position"];
@@ -104,8 +104,8 @@
             
             NSLog(@"got TRACK UPDATE packet");
             
-            [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
-            [message setValue:[NSNumber numberWithInt:(packet[4])] forKey:@"track_number"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[4])] forKey:@"track_number"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+5)))] forKey:@"x_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+9)))] forKey:@"y_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+13)))] forKey:@"z_position"];
@@ -124,8 +124,8 @@
             
             NSLog(@"got TRACK DROP packet");
             
-            [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
-            [message setValue:[NSNumber numberWithInt:(packet[4])] forKey:@"track_number"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[4])] forKey:@"track_number"];
             
             [mutex lock];
             for(int i = 0; i < [listenerList count]; i++) {
@@ -140,7 +140,7 @@
             
             NSLog(@"got SENSOR LOCATION packet");
             
-            [message setValue:[NSNumber numberWithInt:(packet[3])] forKey:@"sensor_id"];
+            [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+8)))] forKey:@"y_position"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+12)))] forKey:@"z_position"];

@@ -20,17 +20,17 @@
 
 -(int) getID;
 
--(void) setX:(uint32_t) xPos;
+-(void) setX:(int32_t) xPos;
 
--(void) setY:(uint32_t) yPos;
+-(void) setY:(int32_t) yPos;
 
--(void) setZ:(uint32_t) zPos;
+-(void) setZ:(int32_t) zPos;
 
--(uint32_t) getX;
+-(int32_t) getX;
 
--(uint32_t) getY;
+-(int32_t) getY;
 
--(uint32_t) getZ;
+-(int32_t) getZ;
 
 -(double) getLatitude;
 

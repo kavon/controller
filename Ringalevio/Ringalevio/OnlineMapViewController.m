@@ -34,11 +34,39 @@
 
 @implementation OnlineMapViewController
 {
-    NSLock *mutex;
+    NSRecursiveLock *mutex;
     TrackedObject *permRef; //id is irrelevant
     // sensors/tracks are non-positive values
     NSMutableArray *mapItems;
     RMMapView *mapView;
+}
+
+-(void) removeOldTracks
+{
+    [mutex lock];
+    NSLog(@"Cleaning out stale tracks.");
+    
+    NSMutableArray *toBeRemoved = [[NSMutableArray alloc] init];
+    
+    TrackedObject *td = nil;
+    // we have to collect them first, because we can't modify the array we're iterating through.
+    for(int i = 0; i < [mapItems count]; i++) {
+        td = [mapItems objectAtIndex:i];
+        
+        if([td getID] <= 0) {
+            continue; // we do not remove other items for being stale such as sensors.
+        }
+        
+        if([[td getTimestamp] timeIntervalSinceNow] <= -10.0) {
+            [toBeRemoved addObject:[NSNumber numberWithInt:[td getID]]];
+        }
+    }
+    
+    for(int i = 0; i < [toBeRemoved count]; i++) {
+        [self removeTrackID:[[toBeRemoved objectAtIndex:i] intValue]];
+    }
+    
+    [mutex unlock];
 }
 
 /**
@@ -48,7 +76,7 @@
 {
     [mutex lock];
 
-    int32_t theID = (int32_t)[data valueForKey:@"sensor_id"];
+    int32_t theID = [[data valueForKey:@"sensor_id"] intValue];
     theID = -theID; // it's not a track, don't drop it due to inactivity.
     TrackedObject *td = nil;
     for(int i = 0; i < [mapItems count]; i++) {
@@ -63,9 +91,9 @@
         [mapItems addObject:td];
     }
     
-    [td setX:(int32_t)[data valueForKey:@"x_position"]];
-    [td setY:(int32_t)[data valueForKey:@"y_position"]];
-    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td setX:[[data valueForKey:@"x_position"] intValue]];
+    [td setY:[[data valueForKey:@"y_position"] intValue]];
+    [td setZ:[[data valueForKey:@"z_position"] intValue]];
     [td updatePosition:permRef];
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
     
@@ -90,7 +118,7 @@
 {
     [mutex lock];
     
-    int32_t theID = (int32_t)[data valueForKey:@"sensor_id"];
+    int32_t theID = [[data valueForKey:@"sensor_id"] intValue];
     theID = -theID; // it's not a track, don't drop it due to inactivity.
     TrackedObject *td = nil;
     for(int i = 0; i < [mapItems count]; i++) {
@@ -105,9 +133,9 @@
         [mapItems addObject:td];
     }
     
-    [td setX:(int32_t)[data valueForKey:@"x_position"]];
-    [td setY:(int32_t)[data valueForKey:@"y_position"]];
-    [td setZ:(int32_t)[data valueForKey:@"z_position"]];
+    [td setX:[[data valueForKey:@"x_position"] intValue]];
+    [td setY:[[data valueForKey:@"y_position"] intValue]];
+    [td setZ:[[data valueForKey:@"z_position"] intValue]];
     [td updatePosition:permRef];
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
     
@@ -159,7 +187,7 @@
     //NSLog(@"ref pt -- x: %u, y: %u, z: %u", [permRef getX], [permRef getY], [permRef getZ]);
     //NSLog(@"ref pt -- lat: %g, long: %g", [permRef getLatitude], [permRef getLongitude]);
     
-    //NSLog(@"new track -- x: %u, y: %u, z: %u", [td getX], [td getY], [td getZ]);
+    //NSLog(@"new track -- x: %i, y: %i, z: %i", [td getX], [td getY], [td getZ]);
     //NSLog(@"new track -- lat: %g, long: %g", [td getLatitude], [td getLongitude]);
     
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
@@ -184,9 +212,11 @@
  * Fields: @"sensor_id", @"track_number"
  */
 -(void) recievedTrackDropMessage: (NSDictionary*) data
-{
-    int32_t theID = (int32_t)[data valueForKey:@"track_number"];
+{   [mutex lock];
+    int32_t theID = [[data valueForKey:@"track_number"] intValue];
+    NSLog(@"removing track %i by request", theID);
     [self removeTrackID:theID];
+    [mutex unlock];
 }
 
 -(void) removeTrackID: (int32_t) theID {
@@ -196,12 +226,14 @@
     for(; i < [mapItems count]; i++) {
         if([[mapItems objectAtIndex:i] getID] == theID) {
             td = [mapItems objectAtIndex:i];
+            break;
         }
     }
     
     if (td != nil) {
         [mapView removeAnnotation:[td getAnnotation]];
         [mapItems removeObjectAtIndex:i];
+        NSLog(@"REMOVED TRACK %i", theID);
     }
     
     [mutex unlock];
@@ -286,7 +318,7 @@
         // initialize map network recieving stuff.
         /////
         
-        mutex = [[NSLock alloc] init];
+        mutex = [[NSRecursiveLock alloc] init];
         
         permRef = [[TrackedObject alloc] initFixedLat:[self.mi missionReferencePoint].longitude andLong:[self.mi missionReferencePoint].latitude andAlt:[self.mi missionReferencePointAltitude]];
         
@@ -295,6 +327,12 @@
         // register this instance of a packet listerner with the host reciever.
         // this should be the last thing done in this block.
         [[HostReciever getInstance] registerListener:self];
+        
+        [NSTimer scheduledTimerWithTimeInterval:10.0
+                                         target:self
+                                       selector:@selector(removeOldTracks)
+                                       userInfo:nil
+                                        repeats:YES];
         
     }
 
