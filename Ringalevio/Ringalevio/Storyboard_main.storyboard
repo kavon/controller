@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -29,7 +29,7 @@
                                             <action selector="cacheButtonPress:" destination="ASO-1M-d9q" eventType="touchDown" id="5S8-8x-haa"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7791" borderStyle="roundedRect" placeholder="Reference Point Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j2K-Gf-tCP">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7791" borderStyle="roundedRect" placeholder="Reference Point Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j2K-Gf-tCP">
                                         <rect key="frame" x="20" y="280" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -63,25 +63,25 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.8112" borderStyle="roundedRect" placeholder="Northeast Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Eh-YxE">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.8112" borderStyle="roundedRect" placeholder="Northeast Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Eh-YxE">
                                         <rect key="frame" x="20" y="128" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8436" borderStyle="roundedRect" placeholder="Northeast Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8436" borderStyle="roundedRect" placeholder="Northeast Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDt-8V-enF">
                                         <rect key="frame" x="20" y="166" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7497" borderStyle="roundedRect" placeholder="Southwest Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-FZ-ppI">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40.7497" borderStyle="roundedRect" placeholder="Southwest Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-FZ-ppI">
                                         <rect key="frame" x="20" y="204" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8967" borderStyle="roundedRect" placeholder="Southwest Latitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-77.8967" borderStyle="roundedRect" placeholder="Southwest Longitude Coordinate" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-dd-nhX">
                                         <rect key="frame" x="20" y="242" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

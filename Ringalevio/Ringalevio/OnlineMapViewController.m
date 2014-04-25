@@ -149,10 +149,19 @@
         [mapItems addObject:td];
     }
     
+    
+    
     [td setX:[[data valueForKey:@"x_position"] intValue]];
     [td setY:[[data valueForKey:@"y_position"] intValue]];
     [td setZ:[[data valueForKey:@"z_position"] intValue]];
     [td updatePosition:permRef];
+    
+    //NSLog(@"ref pt -- x: %u, y: %u, z: %u", [permRef getX], [permRef getY], [permRef getZ]);
+    //NSLog(@"ref pt -- lat: %g, long: %g", [permRef getLatitude], [permRef getLongitude]);
+    
+    //NSLog(@"new track -- x: %u, y: %u, z: %u", [td getX], [td getY], [td getZ]);
+    //NSLog(@"new track -- lat: %g, long: %g", [td getLatitude], [td getLongitude]);
+    
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([td getLatitude], [td getLongitude]);
     
     // gotta make onea these too.
@@ -279,7 +288,7 @@
         
         mutex = [[NSLock alloc] init];
         
-        permRef = [[TrackedObject alloc] initFixedLat:[self.mi missionReferencePoint].latitude andLong:[self.mi missionReferencePoint].longitude andAlt:[self.mi missionReferencePointAltitude]];
+        permRef = [[TrackedObject alloc] initFixedLat:[self.mi missionReferencePoint].longitude andLong:[self.mi missionReferencePoint].latitude andAlt:[self.mi missionReferencePointAltitude]];
         
         mapItems = [[NSMutableArray alloc] init];
         

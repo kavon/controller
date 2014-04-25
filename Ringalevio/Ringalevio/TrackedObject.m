@@ -189,14 +189,14 @@
     double newLat = [refPt getLatitude] + northing;
     if (newLat > 90.0) {
          newLat -= 180.0;
-    } else if (newLat < 90.0) {
+    } else if (newLat < -90.0) {
         newLat += 180.0;
     }
     
     double newLong = [refPt getLongitude] + easting;
     if (newLong > 180.0) {
         newLong -= 360.0;
-    } else if (newLat < 180.0) {
+    } else if (newLat < -180.0) {
         newLong += 360.0;
     }
     
