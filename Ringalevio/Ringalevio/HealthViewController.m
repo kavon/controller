@@ -37,6 +37,12 @@
     [self.webView loadRequest:requestObj];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    // hide toolbar
+    self.navigationController.toolbarHidden = YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -282,7 +282,7 @@
 
 - (void)viewDidLoad
 
-    {
+{
         [super viewDidLoad];
         
         // disable buttons initially
@@ -334,7 +334,14 @@
                                        userInfo:nil
                                         repeats:YES];
         
-    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    // unhide toolbar
+    self.navigationController.toolbarHidden = NO;
+}
+
 
 // method that controls the annotation layer styling
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
