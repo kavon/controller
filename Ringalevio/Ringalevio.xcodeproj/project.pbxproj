@@ -182,26 +182,11 @@
 			isa = PBXGroup;
 			children = (
 				89EAA98218DDF4250029FA8F /* Mapbox.bundle */,
-				89EAA97C18DDF28B0029FA8F /* OnlineMapViewController.h */,
-				89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */,
-				8909202F18D63EBC00D03CF4 /* SensorViewController.m */,
-				8909203018D63EBC00D03CF4 /* SensorViewController.h */,
-				89DF249B18D51D100082A63B /* AddMissionViewController.h */,
-				89DF249C18D51D100082A63B /* AddMissionViewController.m */,
+				C246C60B190EF94C0073E290 /* Data Objects */,
+				C246C60A190EF9280073E290 /* GUI */,
 				891C3F9718C28DAB000BC197 /* Network */,
-				C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */,
-				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
-				C206DD611900863100A17C90 /* AddTrackViewController.h */,
-				C206DD621900863100A17C90 /* AddTrackViewController.m */,
-				C20A951318F7292C00A66F17 /* HealthViewController.h */,
-				C20A951418F7292C00A66F17 /* HealthViewController.m */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
-				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
-				C2A648E618D107B100D7F1A1 /* MissionItem.m */,
-				89DBD4FB1904CC6200B6EBE5 /* TrackedObject.h */,
-				89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */,
-				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
 				8919122E189601F10039CE3D /* Images.xcassets */,
 				89191223189601F10039CE3D /* Supporting Files */,
 			);
@@ -259,6 +244,77 @@
 				89DBD49E19047B7C00B6EBE5 /* Configuration.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		C246C606190EF8D90073E290 /* Mission Control */ = {
+			isa = PBXGroup;
+			children = (
+				C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */,
+				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
+				89DF249B18D51D100082A63B /* AddMissionViewController.h */,
+				89DF249C18D51D100082A63B /* AddMissionViewController.m */,
+			);
+			name = "Mission Control";
+			sourceTree = "<group>";
+		};
+		C246C607190EF8ED0073E290 /* Maps (OP1) */ = {
+			isa = PBXGroup;
+			children = (
+				89EAA97C18DDF28B0029FA8F /* OnlineMapViewController.h */,
+				89EAA97D18DDF28B0029FA8F /* OnlineMapViewController.m */,
+			);
+			name = "Maps (OP1)";
+			sourceTree = "<group>";
+		};
+		C246C608190EF8FB0073E290 /* Sensor View (OP2) */ = {
+			isa = PBXGroup;
+			children = (
+				8909202F18D63EBC00D03CF4 /* SensorViewController.m */,
+				8909203018D63EBC00D03CF4 /* SensorViewController.h */,
+			);
+			name = "Sensor View (OP2)";
+			sourceTree = "<group>";
+		};
+		C246C609190EF90D0073E290 /* Add Track (OP3) */ = {
+			isa = PBXGroup;
+			children = (
+				C206DD611900863100A17C90 /* AddTrackViewController.h */,
+				C206DD621900863100A17C90 /* AddTrackViewController.m */,
+			);
+			name = "Add Track (OP3)";
+			sourceTree = "<group>";
+		};
+		C246C60A190EF9280073E290 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */,
+				C246C606190EF8D90073E290 /* Mission Control */,
+				C246C607190EF8ED0073E290 /* Maps (OP1) */,
+				C246C608190EF8FB0073E290 /* Sensor View (OP2) */,
+				C246C609190EF90D0073E290 /* Add Track (OP3) */,
+				C246C60C190EF9C20073E290 /* Health View */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		C246C60B190EF94C0073E290 /* Data Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C2A648E518D107B100D7F1A1 /* MissionItem.h */,
+				C2A648E618D107B100D7F1A1 /* MissionItem.m */,
+				89DBD4FB1904CC6200B6EBE5 /* TrackedObject.h */,
+				89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */,
+			);
+			name = "Data Objects";
+			sourceTree = "<group>";
+		};
+		C246C60C190EF9C20073E290 /* Health View */ = {
+			isa = PBXGroup;
+			children = (
+				C20A951318F7292C00A66F17 /* HealthViewController.h */,
+				C20A951418F7292C00A66F17 /* HealthViewController.m */,
+			);
+			name = "Health View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
