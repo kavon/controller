@@ -28,7 +28,7 @@
 @implementation SensorViewController
 
 {
-    NSString *streamLocation;
+    NSString *streamHTML;
     LaserController *lc;
     uint8_t currentTarget;
 }
@@ -40,15 +40,6 @@
         
         // THIS SHIT DOESN'T EVEN GET CALLED BY THE UI BUILDER'S CODE
         
-        
-        //CGRect f = self.view.bounds;
-        
-        // link, NSString, http://192.168.23.35/mjpg/video.mjpg is the defacto link right now.
-        // width, int
-        // height, int
-        //streamLocation = [NSString stringWithFormat:@"<html><body style=\"margin:0; padding:0\"><center><img id=\"stream\" src=\"%@\" width=\"%d\" height=\"%d\" border=\"0\" alt=\"Error, check your configuration.\"/></center></body></html>", @"http://192.168.23.35/mjpg/video.mjpg", 160, 100];
-        
-        //streamLocation = @"<html><body style=\"margin:0; padding:0\"><center><h1>VIDEO STREAM SHOULD APPEAR.</h1></center></body></html>";
     }
     return self;
 }
@@ -56,12 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lc = [[LaserController alloc] init:SERVER_ADDR :DEST_PORT];
     
-    // we're going to tell the sensor to "look" at this target now.
-    [lc writeLaserMode:0];
-    [lc writeTarget:currentTarget];
-    [lc sendLaserMessage];
+    lc = [[LaserController alloc] init:SERVER_ADDR :DEST_PORT];
     
     [self reloadStream];
     
@@ -73,15 +60,28 @@
 }
 
 - (void)reloadStream {
-    //[self.videoStream loadHTMLString:streamLocation baseURL:nil];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    int screenWidth = screenRect.size.width;
+    int screenHeight = (3 * screenWidth) / 4;
     
-    // create URL
-    NSString *fullURL = @"http://google.com";
-    NSURL *url = [NSURL URLWithString:fullURL];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    NSLog(@"TRying width %d, height %d.", screenWidth, screenHeight);
     
-    // go to webpage
-    [self.videoStream loadRequest:requestObj];
+    // link, NSString, http://192.168.23.35/mjpg/video.mjpg is the defacto link right now.
+    // width, int
+    // height, int
+    //bgcolor=\"#000000\"
+    streamHTML = [NSString stringWithFormat:@"<html><body style=\"margin:0; padding:0\"><center><img id=\"stream\" src=\"%@\" width=\"%d\" height=\"%d\" border=\"0\" alt=\"Error, check your configuration.\"/></center></body></html>", @"http://192.168.23.35/mjpg/video.mjpg", screenWidth, screenHeight];
+    
+    //streamHTML = [NSString stringWithFormat:@"<html><body style=\"margin:0; padding:0\"><center><img id=\"stream\" src=\"%@\" border=\"0\" alt=\"Error, check your configuration.\"/></center></body></html>", @"http://192.168.23.35/mjpg/video.mjpg"];
+    
+    // we're going to tell the sensor to "look" at this target now.
+    [lc writeLaserMode:0];
+    [lc writeTarget:currentTarget];
+    [lc sendLaserMessage];
+    
+    [self.videoStream loadHTMLString:streamHTML baseURL:nil];
+    
+    [self.videoStream setUserInteractionEnabled:false];
     
 }
 

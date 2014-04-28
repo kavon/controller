@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tzc-lZ-gcM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -240,7 +240,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmk-XD-JKz">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmk-XD-JKz">
                                 <rect key="frame" x="0.0" y="43" width="320" height="482"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -328,6 +328,7 @@
             <objects>
                 <navigationController storyboardIdentifier="nav3" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="59T-DD-hfR" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJw-Yb-FLn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -465,8 +466,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="ffD-aF-xOw"/>
         <segue reference="mS3-08-IaS"/>
-        <segue reference="Bzs-jb-l5L"/>
-        <segue reference="8uh-v1-8DF"/>
+        <segue reference="ff9-OO-Qho"/>
         <segue reference="qRS-Wh-b8g"/>
+        <segue reference="5A9-0a-0Bh"/>
     </inferredMetricsTieBreakers>
 </document>
