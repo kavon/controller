@@ -7,14 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-// camera overlay delegate functions
-@protocol CameraOverlayDelegate <NSObject>
-
-// cancel button action to segue back to map
--(void)CancelButtonPress:(id)sender;
-
-@end
+#import "CameraOverlayDelegate.h"
 
 @interface CameraOverlay : UIView
 

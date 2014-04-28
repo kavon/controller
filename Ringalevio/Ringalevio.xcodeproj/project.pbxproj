@@ -115,6 +115,7 @@
 		C2A648E618D107B100D7F1A1 /* MissionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItem.m; sourceTree = "<group>"; };
 		C2EBCA4A19099206001DC25D /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlay.h; sourceTree = "<group>"; };
 		C2EBCA4B19099206001DC25D /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlay.m; sourceTree = "<group>"; };
+		C2EBCA4D190DEF79001DC25D /* CameraOverlayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,10 +197,11 @@
 				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
 				C2EBCA4A19099206001DC25D /* CameraOverlay.h */,
 				C2EBCA4B19099206001DC25D /* CameraOverlay.m */,
-				C20A951318F7292C00A66F17 /* HealthViewController.h */,
-				C20A951418F7292C00A66F17 /* HealthViewController.m */,
+				C2EBCA4D190DEF79001DC25D /* CameraOverlayDelegate.h */,
 				C206DD611900863100A17C90 /* AddTrackViewController.h */,
 				C206DD621900863100A17C90 /* AddTrackViewController.m */,
+				C20A951318F7292C00A66F17 /* HealthViewController.h */,
+				C20A951418F7292C00A66F17 /* HealthViewController.m */,
 				8919122B189601F10039CE3D /* AppDelegate.h */,
 				8919122C189601F10039CE3D /* AppDelegate.m */,
 				C2A648E518D107B100D7F1A1 /* MissionItem.h */,

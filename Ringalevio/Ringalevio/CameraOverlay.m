@@ -9,7 +9,6 @@
 #import "CameraOverlay.h"
 
 @implementation CameraOverlay
-@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,15 +48,16 @@
 }
 */
 
+
 -(IBAction)CancelButtonPress:(id)sender
 {
-    [delegate CancelButtonPress:self];
+    [self.delegate CancelButtonPress:self];
     NSLog(@"Cancel pressed");
 }
 
 -(void) AddTrackButtonPress
 {
-    
+    NSLog(@"Add Track Pressed");
 }
 
 @end

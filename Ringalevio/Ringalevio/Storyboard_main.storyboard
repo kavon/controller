@@ -408,37 +408,6 @@
             </objects>
             <point key="canvasLocation" x="2595" y="1476"/>
         </scene>
-        <!--Camera Overlay View Controller-->
-        <scene sceneID="LmQ-dB-mKn">
-            <objects>
-                <viewController storyboardIdentifier="cameraOverlayView" id="rjn-h0-b9z" customClass="CameraOverlayViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1u3-qU-i5W"/>
-                        <viewControllerLayoutGuide type="bottom" id="13i-Py-3sy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YSp-cy-z0p">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xn3-h9-7ci">
-                                <rect key="frame" x="97" y="505" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Add Track" backgroundImage="LoadingTile6.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addTrackButton:" destination="rjn-h0-b9z" eventType="touchUpInside" id="Ny6-c9-i4j"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bET-ah-ZCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3047" y="1476"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fDT-f1-fNj">
             <objects>
@@ -477,19 +446,16 @@
             <point key="canvasLocation" x="2153" y="1476"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LoadingTile6.png" width="256" height="256"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KKy-as-SRz"/>
-        <segue reference="Bzs-jb-l5L"/>
-        <segue reference="G6q-23-IEX"/>
-        <segue reference="8uh-v1-8DF"/>
         <segue reference="mS3-08-IaS"/>
+        <segue reference="7Qs-5J-A4Y"/>
+        <segue reference="G6q-23-IEX"/>
+        <segue reference="Bzs-jb-l5L"/>
+        <segue reference="8uh-v1-8DF"/>
     </inferredMetricsTieBreakers>
 </document>

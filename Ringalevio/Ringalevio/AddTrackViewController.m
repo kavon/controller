@@ -11,7 +11,7 @@
 @interface AddTrackViewController ()
 
 // UI elements
-@property (strong, nonatomic) IBOutlet UIView *overlayView;
+@property (strong, nonatomic) IBOutlet CameraOverlay *overlayView;
 
 @end
 
@@ -53,6 +53,7 @@
         
         // init overlay for camera (default won't do for us, no pictures allowed)
         self.overlayView = [[CameraOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        self.overlayView.delegate = self;
         
         
         // set custom overlay
@@ -98,7 +99,7 @@
 // CameraOverlayDelegate function
 -(void) CancelButtonPress:(id)sender
 {
-    [self performSegueWithIdentifier:@"AddTrackSegueToMap" sender:self];
+    [self performSegueWithIdentifier:@"addTrackSegueToMap" sender:self];
 }
 
 @end
