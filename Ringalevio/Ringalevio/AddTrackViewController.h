@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CameraOverlay.h"
 
-@interface AddTrackViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, CameraOverlayDelegate>
+@interface AddTrackViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // camera picker object (inits camera)
 @property UIImagePickerController *pickerController;

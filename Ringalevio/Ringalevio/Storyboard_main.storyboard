@@ -389,19 +389,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUt-FP-rwF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="526"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="8Yi-dL-sPW"/>
+                        <barButtonItem title="Add Track" id="xaQ-4t-cja">
+                            <connections>
+                                <action selector="AddTrackButtonPress:" destination="Yr7-5L-V1o" id="LCa-pI-jDj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HXa-tI-JBs"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Add Track" id="BKO-L7-Ax5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="tYZ-hA-bua"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="rUt-FP-rwF" id="uPK-5s-JCN"/>
-                        <segue destination="YNa-Fl-oeO" kind="push" identifier="addTrackSegueToMap" id="7Qs-5J-A4Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-Tu-2X3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,7 +436,7 @@
         <!--Navigation Controller-->
         <scene sceneID="YLx-1w-Iv9">
             <objects>
-                <navigationController storyboardIdentifier="nav5" automaticallyAdjustsScrollViewInsets="NO" id="hXc-xJ-Tvi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav5" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="hXc-xJ-Tvi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="qG7-wm-DgH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZOA-Ty-uT7">
@@ -437,6 +444,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iib-HE-9tx">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Yr7-5L-V1o" kind="relationship" relationship="rootViewController" id="qRS-Wh-b8g"/>
                     </connections>
@@ -452,10 +463,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="ffD-aF-xOw"/>
         <segue reference="mS3-08-IaS"/>
-        <segue reference="7Qs-5J-A4Y"/>
-        <segue reference="G6q-23-IEX"/>
         <segue reference="Bzs-jb-l5L"/>
         <segue reference="8uh-v1-8DF"/>
+        <segue reference="qRS-Wh-b8g"/>
     </inferredMetricsTieBreakers>
 </document>

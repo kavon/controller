@@ -75,7 +75,7 @@
     
     if(packet[2] != 0x0) {
         // this is not an original message. NOPE
-        NSLog(@"Not an origional message, NOPE");
+        NSLog(@"Not an original message, NOPE");
         return;
     }
     

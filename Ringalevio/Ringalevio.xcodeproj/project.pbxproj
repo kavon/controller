@@ -43,7 +43,6 @@
 		C2A648DB18D0C34C00D7F1A1 /* Storyboard_main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2A648DA18D0C34C00D7F1A1 /* Storyboard_main.storyboard */; };
 		C2A648E418D0FE8800D7F1A1 /* MissionControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */; };
 		C2A648E718D107B100D7F1A1 /* MissionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A648E618D107B100D7F1A1 /* MissionItem.m */; };
-		C2EBCA4C19099206001DC25D /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBCA4B19099206001DC25D /* CameraOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,9 +112,6 @@
 		C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionControlViewController.m; sourceTree = "<group>"; };
 		C2A648E518D107B100D7F1A1 /* MissionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionItem.h; sourceTree = "<group>"; };
 		C2A648E618D107B100D7F1A1 /* MissionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionItem.m; sourceTree = "<group>"; };
-		C2EBCA4A19099206001DC25D /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlay.h; sourceTree = "<group>"; };
-		C2EBCA4B19099206001DC25D /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlay.m; sourceTree = "<group>"; };
-		C2EBCA4D190DEF79001DC25D /* CameraOverlayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,9 +191,6 @@
 				891C3F9718C28DAB000BC197 /* Network */,
 				C2A648E218D0FE8800D7F1A1 /* MissionControlViewController.h */,
 				C2A648E318D0FE8800D7F1A1 /* MissionControlViewController.m */,
-				C2EBCA4A19099206001DC25D /* CameraOverlay.h */,
-				C2EBCA4B19099206001DC25D /* CameraOverlay.m */,
-				C2EBCA4D190DEF79001DC25D /* CameraOverlayDelegate.h */,
 				C206DD611900863100A17C90 /* AddTrackViewController.h */,
 				C206DD621900863100A17C90 /* AddTrackViewController.m */,
 				C20A951318F7292C00A66F17 /* HealthViewController.h */,
@@ -370,7 +363,6 @@
 				C20A951518F7292C00A66F17 /* HealthViewController.m in Sources */,
 				891C3FA218C28DCA000BC197 /* GCDAsyncSocket.m in Sources */,
 				89DBD49F19047B7C00B6EBE5 /* Configuration.m in Sources */,
-				C2EBCA4C19099206001DC25D /* CameraOverlay.m in Sources */,
 				891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */,
 				8994231C18F3796E008DD3FB /* HostReciever.m in Sources */,
 				89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */,

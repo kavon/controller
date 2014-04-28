@@ -10,8 +10,7 @@
 
 @interface AddTrackViewController ()
 
-// UI elements
-@property (strong, nonatomic) IBOutlet CameraOverlay *overlayView;
+-(IBAction)AddTrackButtonPress:(id)sender;
 
 @end
 
@@ -51,13 +50,12 @@
         self.pickerController.navigationBarHidden = NO;
         self.pickerController.toolbarHidden = YES;
         
-        // init overlay for camera (default won't do for us, no pictures allowed)
-        self.overlayView = [[CameraOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-        self.overlayView.delegate = self;
+        // add camera to panel
+        [self addChildViewController:self.pickerController];
         
+        [self.pickerController didMoveToParentViewController:self];
         
-        // set custom overlay
-        self.pickerController.cameraOverlayView = self.overlayView;
+        [self.view addSubview:self.pickerController.view];
         
         // set size of camera
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
@@ -75,8 +73,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self presentViewController:self.pickerController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,10 +92,9 @@
 }
 */
 
-// CameraOverlayDelegate function
--(void) CancelButtonPress:(id)sender
+-(IBAction)AddTrackButtonPress:(id)sender
 {
-    [self performSegueWithIdentifier:@"addTrackSegueToMap" sender:self];
+    
 }
 
 @end
