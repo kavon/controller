@@ -180,7 +180,7 @@
         // cache in background
         self.mapSource = [[RMMapboxSource alloc] initWithMapID:@"461group.hocfjnai"];
         
-        [self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestYdouble, _southwestXdouble)) northEast:(makeCoordinate(_northeastYdouble, _northeastXdouble)) minZoom:(5) maxZoom: (14)];
+        [self.tileCache beginBackgroundCacheForTileSource:(self.mapSource) southWest:(makeCoordinate(_southwestYdouble, _southwestXdouble)) northEast:(makeCoordinate(_northeastYdouble, _northeastXdouble)) minZoom:(5) maxZoom: (15)];
         
         // block while caching?
         NSLog(@"Cache Begin");

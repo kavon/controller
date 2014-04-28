@@ -349,11 +349,11 @@
     RMMarker *marker;
     if ([annotation.annotationType  isEqual: @"track"])
     {
-        marker = [[RMMarker alloc] initWithMapboxMarkerImage:@"cross" tintColor:[UIColor redColor]];
+        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"cross"]];
     }
     else
     {
-        marker = [[RMMarker alloc] initWithMapboxMarkerImage:@"star" tintColor:[UIColor blueColor]];
+        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"star"]];
     }
     self.subtitle1 = [NSString stringWithFormat:@"%.4f", annotation.coordinate.longitude];
     self.subtitle2 = [NSString stringWithFormat:@"%.4f", annotation.coordinate.latitude];
