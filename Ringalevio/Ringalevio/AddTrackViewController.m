@@ -100,6 +100,20 @@
             NSLog(@"Gyroscope not Available!");
         }
         
+        if([self.motionManager isMagnetometerAvailable])
+        {
+            if([self.motionManager isMagnetometerActive] == NO)
+            {
+                [self.motionManager setMagnetometerUpdateInterval:1.0f / 2.0f];
+                
+                //[self.motionManager startMagnetometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:(CMMagnetometerData *magData, NSError *error)
+                 //{
+                   //  NSString *magX = [[NSString alloc] initWithFormat:@"%.02f", magData.magneticField.x];
+                     
+                     //NSString
+                 //}]
+            }
+        }
         // handle compass (TODO)
 
     }
