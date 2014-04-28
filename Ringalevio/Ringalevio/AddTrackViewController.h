@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CameraOverlay.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface AddTrackViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // camera picker object (inits camera)
 @property UIImagePickerController *pickerController;
+
+// gyroscope controller object
+@property CMMotionManager *motionManager;
 
 // camera view object
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;

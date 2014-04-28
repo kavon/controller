@@ -65,8 +65,45 @@
         float imageWidth = floorf(screenSize.width * cameraAspectRatio);
         float scale = ceilf(((screenSize.height + heightOffset) / imageWidth) * 10.0) / 10.0;
         self.pickerController.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
+        
+        // handle gyroscope: Thanks to stackOverflow
+        
+        // init motion manager
+        self.motionManager = [[CMMotionManager alloc] init];
+        
+        // check if gyro is present on device
+        if([self.motionManager isGyroAvailable])
+        {
+            /* Start the gyroscope if it is not active already */
+            if([self.motionManager isGyroActive] == NO)
+            {
+                /* Update us 2 times a second */
+                [self.motionManager setGyroUpdateInterval:1.0f / 2.0f];
+                
+                /* Add on a handler block object */
+                
+                /* Receive the gyroscope data on this block */
+                [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue]
+                                                withHandler:^(CMGyroData *gyroData, NSError *error)
+                 {
+                     NSString *x = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.x];
+                     
+                     NSString *y = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.y];
+                     
+                     NSString *z = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.z];
+                 }];
+            }
+        }
+        else
+        {
+            // pitch if no gyro available
+            NSLog(@"Gyroscope not Available!");
+        }
+        
+        // handle compass (TODO)
 
     }
+    
 }
 
 // call camera when view has loaded
