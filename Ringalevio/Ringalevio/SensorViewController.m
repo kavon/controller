@@ -60,7 +60,7 @@
 }
 
 - (void)reloadStream {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGRect screenRect = self.view.bounds;
     int screenWidth = screenRect.size.width;
     int screenHeight = (3 * screenWidth) / 4;
     

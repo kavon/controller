@@ -260,17 +260,29 @@
         
         // Pass the information to your destination view
         vc.mi = self.mi;
-    }
     
-    // segue to sensor, "move to target" network packet goes here
-    if ([segue.identifier  isEqual: @"sensorSegue"]) {
+    } else if ([segue.identifier  isEqual: @"sensorSegue"]) {
+        // segue to sensor, "move to target" network packet goes here
         SensorViewController *svc = [segue destinationViewController];
         svc.mi = self.mi;
-        // TODO: THE TRACK NUMBER NEEDS TO BE SET IN THE SVC
+        
+        TrackedObject *td = nil;
+        // we have to collect them first, because we can't modify the array we're iterating through.
+        [mutex lock];
+        for(int i = 0; i < [mapItems count]; i++) {
+            td = [mapItems objectAtIndex:i];
+            
+            if([td getAnnotation] == self.selectedMarker) {
+                [svc setTargetNumber:[td getID]];
+                break;
+            }
+        }
+        [mutex unlock];
+        
+        [svc reloadStream];
+        
     }
-    
-    else
-        return;
+
 }
 
 - (void)initMissionItem:(MissionItem *)mi_i

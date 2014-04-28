@@ -15,4 +15,6 @@
 
 - (void)reloadStream;
 
+- (void) setTargetNumber:(uint8_t)targ;
+
 @end
