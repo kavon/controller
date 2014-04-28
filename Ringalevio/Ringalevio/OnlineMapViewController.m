@@ -349,11 +349,11 @@
     RMMarker *marker;
     if ([annotation.annotationType  isEqual: @"track"])
     {
-        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"cross"]];
+        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"star"]];
     }
     else
     {
-        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"star"]];
+        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"cross"]];
     }
     self.subtitle1 = [NSString stringWithFormat:@"%.4f", annotation.coordinate.longitude];
     self.subtitle2 = [NSString stringWithFormat:@"%.4f", annotation.coordinate.latitude];
