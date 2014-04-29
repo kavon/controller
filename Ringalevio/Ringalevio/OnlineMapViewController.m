@@ -391,6 +391,8 @@
     // set selected marker in code
     self.selectedMarker = annotation;
     
+    [self mapView:self->mapView layerForAnnotation:annotation];
+    
     // manage buttons
     if ([annotation.annotationType  isEqual: @"sensor"])
     {
