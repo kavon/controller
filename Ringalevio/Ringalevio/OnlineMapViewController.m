@@ -105,8 +105,9 @@
         [td setAnnotation:annotation];
         [mapView addAnnotation:annotation];
     } else {
+        // for tracks
         [annotation setCoordinate:coord];
-        [annotation setSubtitle:[NSString stringWithFormat:@"@(%f,%f), %fm", [td getLatitude], [td getLongitude], [td getAltitude]]];
+        [self mapView:self->mapView layerForAnnotation:annotation];
     }
     
     [mutex unlock];
@@ -375,14 +376,7 @@
     
     marker.canShowCallout = YES;
     
-    marker.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    
     return marker;
-}
-
-- (void)tapOnCalloutAccessoryControl:(UIControl *)control forAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
-{
-    NSLog(@"You tapped the callout button!");
 }
 
 // Delegate function: one of the markers was selected
@@ -390,8 +384,6 @@
 {
     // set selected marker in code
     self.selectedMarker = annotation;
-    
-    [self mapView:self->mapView layerForAnnotation:annotation];
     
     // manage buttons
     if ([annotation.annotationType  isEqual: @"sensor"])
