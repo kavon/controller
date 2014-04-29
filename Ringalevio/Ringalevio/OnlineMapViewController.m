@@ -106,6 +106,7 @@
         [mapView addAnnotation:annotation];
     } else {
         [annotation setCoordinate:coord];
+        [annotation setSubtitle:[NSString stringWithFormat:@"@(%f,%f), %fm", [td getLatitude], [td getLongitude], [td getAltitude]]];
     }
     
     [mutex unlock];
