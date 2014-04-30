@@ -26,6 +26,7 @@
 		891C3FAF18C29CF7000BC197 /* LaserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FAE18C29CF7000BC197 /* LaserController.m */; };
 		891C3FB218C2A323000BC197 /* DeviceMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C3FB118C2A323000BC197 /* DeviceMessenger.m */; };
 		8994231C18F3796E008DD3FB /* HostReciever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994231B18F3796E008DD3FB /* HostReciever.m */; };
+		899FED3F1911BA530042607C /* TrackSpotter.m in Sources */ = {isa = PBXBuildFile; fileRef = 899FED3E1911BA530042607C /* TrackSpotter.m */; };
 		89DBD49F19047B7C00B6EBE5 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBD49E19047B7C00B6EBE5 /* Configuration.m */; };
 		89DBD4FD1904CC6200B6EBE5 /* TrackedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBD4FC1904CC6200B6EBE5 /* TrackedObject.m */; };
 		89DF249D18D51D100082A63B /* AddMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF249C18D51D100082A63B /* AddMissionViewController.m */; };
@@ -87,6 +88,8 @@
 		8994231618F37476008DD3FB /* PacketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PacketListener.h; path = Network/PacketListener.h; sourceTree = "<group>"; };
 		8994231A18F3796E008DD3FB /* HostReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HostReciever.h; path = Network/HostReciever.h; sourceTree = "<group>"; };
 		8994231B18F3796E008DD3FB /* HostReciever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HostReciever.m; path = Network/HostReciever.m; sourceTree = "<group>"; };
+		899FED3D1911BA520042607C /* TrackSpotter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrackSpotter.h; path = Network/TrackSpotter.h; sourceTree = "<group>"; };
+		899FED3E1911BA530042607C /* TrackSpotter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrackSpotter.m; path = Network/TrackSpotter.m; sourceTree = "<group>"; };
 		89DBD49D19047B7C00B6EBE5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Network/Configuration.h; sourceTree = "<group>"; };
 		89DBD49E19047B7C00B6EBE5 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Network/Configuration.m; sourceTree = "<group>"; };
 		89DBD4FB1904CC6200B6EBE5 /* TrackedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackedObject.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				891C3FAA18C29CDC000BC197 /* GimbalController.h */,
 				891C3FAB18C29CDC000BC197 /* GimbalController.m */,
 				891C3FAD18C29CF7000BC197 /* LaserController.h */,
+				899FED3D1911BA520042607C /* TrackSpotter.h */,
+				899FED3E1911BA530042607C /* TrackSpotter.m */,
 				891C3FAE18C29CF7000BC197 /* LaserController.m */,
 				891C3FB018C2A323000BC197 /* DeviceMessenger.h */,
 				891C3FB118C2A323000BC197 /* DeviceMessenger.m */,
@@ -423,6 +428,7 @@
 				8994231C18F3796E008DD3FB /* HostReciever.m in Sources */,
 				89EAA97E18DDF28B0029FA8F /* OnlineMapViewController.m in Sources */,
 				89191229189601F10039CE3D /* main.m in Sources */,
+				899FED3F1911BA530042607C /* TrackSpotter.m in Sources */,
 				C2A648E418D0FE8800D7F1A1 /* MissionControlViewController.m in Sources */,
 				891C3FA318C28DCA000BC197 /* GCDAsyncUdpSocket.m in Sources */,
 				C2A648E718D107B100D7F1A1 /* MissionItem.m in Sources */,
