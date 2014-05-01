@@ -134,13 +134,13 @@
     dropper = [[TrackDropper alloc] init:SERVER_ADDR :DEST_PORT];
     
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(sendUpdate)
                                    userInfo:nil
                                     repeats:YES];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    self.messageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(sendMessage)
                                    userInfo:nil
@@ -212,6 +212,8 @@
 {
     // stop updating the motion controls
     [self.motionManager stopDeviceMotionUpdates];
+    [self.messageTimer invalidate];
+    [self.updateTimer invalidate];
 }
 
 - (BOOL)prefersStatusBarHidden

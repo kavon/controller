@@ -16,6 +16,10 @@
 // Mission item for recieving URL
 @property MissionItem* mi;
 
+// timers
+@property NSTimer* updateTimer;
+@property NSTimer* messageTimer;
+
 //variables for gyro
 @property CMAttitude *attitude;
 @property double x;
