@@ -31,6 +31,12 @@
     NSString *streamHTML;
     LaserController *lc;
     uint8_t currentTarget;
+    NSLock *mutex;
+    GimbalController *gc;
+    
+    double oldX;
+    double oldY;
+    double oldZ;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +50,42 @@
     return self;
 }
 
+-(void)sendUpdate {
+    [mutex lock];
+    
+    int fixedSpeed = 5;
+    
+    double Xdiff = self.x - oldX;
+    double Ydiff = self.y - oldY;
+    //double Zdiff = self.z - oldZ;
+    
+    oldX = self.x;
+    oldY = self.y;
+    oldZ = self.z;
+    
+    if(Xdiff > 0) {
+        [gc writeAzimuthSpeed:fixedSpeed];
+    } else if (Xdiff < 0) {
+        [gc writeAzimuthSpeed:-fixedSpeed];
+    } else {
+        [gc writeElevationSpeed:0];
+    }
+    
+    if (Ydiff > 0) {
+        [gc writeElevationSpeed:fixedSpeed];
+    } else if (Ydiff < 0) {
+        [gc writeElevationSpeed:-fixedSpeed];
+    } else {
+        [gc writeElevationSpeed:0];
+    }
+    
+    [gc writeEnableTrackingMode:true];
+    
+    [gc sendGimbalMessage];
+    
+    [mutex unlock];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,6 +94,53 @@
     
     // init motion manager
     self.motionManager = [[CMMotionManager alloc] init];
+    
+    mutex = [[NSLock alloc] init];
+    
+    gc = [[GimbalController alloc] init:SERVER_ADDR :DEST_PORT];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.25
+                                     target:self
+                                   selector:@selector(sendUpdate)
+                                   userInfo:nil
+                                    repeats:YES];
+    
+    // handle gyroscope: Thanks to stackOverflow
+    
+    // init motion manager
+    self.motionManager = [[CMMotionManager alloc] init];
+    
+    // check if gyro is present on device
+    if([self.motionManager isGyroAvailable])
+    {
+        /* Start the gyroscope if it is not active already */
+        if([self.motionManager isGyroActive] == NO)
+        {
+            /* Update us 2 times a second */
+            [self.motionManager setGyroUpdateInterval:1.0f / 2.0f];
+            
+            /* Add on a handler block object */
+            
+            /* Receive the gyroscope data on this block */
+            [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue]
+                                            withHandler:^(CMGyroData *gyroData, NSError *error)
+             {
+                 
+                 [mutex lock];
+                 self.x = gyroData.rotationRate.x;
+                 
+                 self.y = gyroData.rotationRate.y;
+                 
+                 self.z = gyroData.rotationRate.z;
+                 [mutex unlock];
+             }];
+        }
+    }
+    else
+    {
+        // pitch if no gyro available
+        NSLog(@"Gyroscope not Available!");
+    }
     
     [self reloadStream];
     
