@@ -50,42 +50,48 @@
     
     lc = [[LaserController alloc] init:SERVER_ADDR :DEST_PORT];
     
-    // handle gyroscope: Thanks to stackOverflow
-    
     // init motion manager
     self.motionManager = [[CMMotionManager alloc] init];
     
-    // check if gyro is present on device
-    if([self.motionManager isGyroAvailable])
-    {
-        /* Start the gyroscope if it is not active already */
-        if([self.motionManager isGyroActive] == NO)
-        {
-            /* Update us 2 times a second */
-            [self.motionManager setGyroUpdateInterval:1.0f / 2.0f];
-            
-            /* Add on a handler block object */
-            
-            /* Receive the gyroscope data on this block */
-            [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue]
-                                            withHandler:^(CMGyroData *gyroData, NSError *error)
-             {
-                 self.x = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.x];
-                 
-                 self.y = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.y];
-                 
-                 self.z = [[NSString alloc] initWithFormat:@"%.02f",gyroData.rotationRate.z];
-             }];
-        }
-    }
-    else
-    {
-        // pitch if no gyro available
-        NSLog(@"Gyroscope not Available!");
-    }
-    
     [self reloadStream];
     
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    // start motion reporting
+    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
+        [self processMotion:motion];
+    }];
+}
+
+// enable motion tracking
+-(void) enableMotion
+{
+    CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
+    self.attitude = deviceMotion.attitude;
+    [self.motionManager startDeviceMotionUpdates];
+}
+
+-(void)processMotion:(CMDeviceMotion*)motion {
+    // constantly set roll/pitch/yaw, send to console as well
+    NSLog(@"Roll: %.2f Pitch: %.2f Yaw: %.2f", motion.attitude.roll, motion.attitude.pitch, motion.attitude.yaw);
+    self.x = motion.attitude.roll;
+    self.y = motion.attitude.pitch;
+    self.z = motion.attitude.yaw;
+}
+
+// method for sending movement messages to gimbal
+-(void) sendMessage
+{
+    
+}
+
+// method for leaving this view
+-(void) viewWillDisappear:(BOOL)animated
+{
+    // stop updating the motion controls
+    [self.motionManager stopDeviceMotionUpdates];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -98,7 +104,7 @@
     int screenWidth = screenRect.size.width;
     int screenHeight = (3 * screenWidth) / 4;
     
-    NSLog(@"TRying width %d, height %d.", screenWidth, screenHeight);
+    NSLog(@"Trying width %d, height %d.", screenWidth, screenHeight);
     
     // link, NSString, http://192.168.23.35/mjpg/video.mjpg is the defacto link right now.
     // width, int

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import <Foundation/Foundation.h>
 #import "MissionItem.h"
 
 @interface SensorViewController : UIViewController
@@ -15,9 +16,10 @@
 @property MissionItem* mi;
 
 //variables for gyro
-@property NSString *x;
-@property NSString *y;
-@property NSString *z;
+@property CMAttitude *attitude;
+@property double x;
+@property double y;
+@property double z;
 
 // controller for gyro
 @property CMMotionManager* motionManager;
