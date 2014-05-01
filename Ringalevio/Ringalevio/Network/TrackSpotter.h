@@ -15,8 +15,6 @@
  */
 -(void)sendTrackUpdateMessage;
 
--(void) writeTarget:(uint8_t) targ;
-
 /**
  * This should be a valid track number.
  * Valid range is 0x01-0xFF.

@@ -61,7 +61,7 @@
     // verify checksum. if it fails, we drop it like it's hawt
     int sum = 0;
     unsigned long size = [data length];
-    NSLog(@"Size of packet: %lu", size);
+    //NSLog(@"Size of packet: %lu", size);
     uint8_t *packet = malloc(size);
     [data getBytes:packet length:size];
     for(unsigned long i = 0; i < size-1; i++) {
@@ -84,7 +84,7 @@
         // TRACK SOURCE LOCATION MESSAGE
         case 0x10:
             
-            NSLog(@"got TRACK SOURCE LOCATION packet");
+            //NSLog(@"got TRACK SOURCE LOCATION packet");
             
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];
@@ -102,7 +102,7 @@
         // TRACK UPDATE MESSAGE (SENSOR TRACK MESSAGE)
         case 0x11:
             
-            NSLog(@"got TRACK UPDATE packet");
+            //NSLog(@"got TRACK UPDATE packet");
             
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[4])] forKey:@"track_number"];
@@ -122,7 +122,7 @@
         // TRACK/TARGET DROP MESSAGE
         case 0x12:
             
-            NSLog(@"got TRACK DROP packet");
+            //NSLog(@"got TRACK DROP packet");
             
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[4])] forKey:@"track_number"];
@@ -138,7 +138,7 @@
         // SENSOR LOCATION MESSAGE
         case 0x20:
             
-            NSLog(@"got SENSOR LOCATION packet");
+            //NSLog(@"got SENSOR LOCATION packet");
             
             [message setValue:[NSNumber numberWithUnsignedInt:(packet[3])] forKey:@"sensor_id"];
             [message setValue:[NSNumber numberWithInt:(*((int32_t*)(packet+4)))] forKey:@"x_position"];

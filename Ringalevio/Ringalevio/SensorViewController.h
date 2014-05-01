@@ -9,6 +9,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import <Foundation/Foundation.h>
 #import "MissionItem.h"
+#import "TrackedObject.h"
 
 @interface SensorViewController : UIViewController
 
@@ -26,6 +27,8 @@
 
 - (void)reloadStream;
 
-- (void) setTargetNumber:(uint8_t)targ;
+- (void) setTargetNumber:(TrackedObject*)targ;
+
+-(TrackedObject*) getTargetNumber;
 
 @end

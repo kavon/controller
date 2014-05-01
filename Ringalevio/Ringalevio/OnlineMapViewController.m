@@ -39,6 +39,7 @@
     // sensors/tracks are non-positive values
     NSMutableArray *mapItems;
     RMMapView *mapView;
+    SensorViewController *svc;
 }
 
 -(void) removeOldTracks
@@ -64,6 +65,9 @@
     
     for(int i = 0; i < [toBeRemoved count]; i++) {
         [self removeTrackID:[[toBeRemoved objectAtIndex:i] intValue]];
+        if([svc getTargetNumber] != nil && [[svc getTargetNumber] getID] == [[toBeRemoved objectAtIndex:i] intValue]) {
+            [svc setTargetNumber:nil];
+        }
     }
     
     [mutex unlock];
@@ -265,7 +269,7 @@
     
     } else if ([segue.identifier  isEqual: @"sensorSegue"]) {
         // segue to sensor, "move to target" network packet goes here
-        SensorViewController *svc = [segue destinationViewController];
+        svc = [segue destinationViewController];
         svc.mi = self.mi;
         
         TrackedObject *td = nil;
@@ -275,7 +279,8 @@
             td = [mapItems objectAtIndex:i];
             
             if([td getAnnotation] == self.selectedMarker) {
-                [svc setTargetNumber:[td getID]];
+                NSLog(@"\n\nSETTING TARGET NUMBER\n\n");
+                [svc setTargetNumber:td];
                 break;
             }
         }

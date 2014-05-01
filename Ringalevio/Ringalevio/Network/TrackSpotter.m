@@ -21,7 +21,7 @@
     track_len = 18;
     track_buf = calloc(track_len, 1);
     
-    track_buf[0] = 0x1;        // Track update message
+    track_buf[0] = 0x11;        // Track update message
     track_buf[1] = track_len;   // size of this message
     track_buf[2] = 0x0;         // this is the original message
     track_buf[3] = 0x0;         // TEST SENSOR
