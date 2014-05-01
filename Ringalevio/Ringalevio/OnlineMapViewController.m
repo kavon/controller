@@ -269,17 +269,17 @@
     
     } else if ([segue.identifier  isEqual: @"sensorSegue"]) {
         // segue to sensor, "move to target" network packet goes here
+        [mutex lock];
         svc = [segue destinationViewController];
         svc.mi = self.mi;
         
         TrackedObject *td = nil;
         // we have to collect them first, because we can't modify the array we're iterating through.
-        [mutex lock];
+        
         for(int i = 0; i < [mapItems count]; i++) {
             td = [mapItems objectAtIndex:i];
             
             if([td getAnnotation] == self.selectedMarker) {
-                NSLog(@"\n\nSETTING TARGET NUMBER\n\n");
                 [svc setTargetNumber:td];
                 break;
             }

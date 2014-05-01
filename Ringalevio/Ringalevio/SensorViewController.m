@@ -8,7 +8,8 @@
 #import "SensorViewController.h"
 #import "Network/LaserController.h"
 #import "Network/Configuration.h"
-#import "NEtwork/TrackSpotter.h"
+#import "Network/TrackSpotter.h"
+#import "Network/TrackDropper.h"
 
 @interface SensorViewController ()
 
@@ -31,11 +32,11 @@
 {
     NSString *streamHTML;
     LaserController *lc;
-    TrackedObject *currentTarget;
     NSLock *mutex;
     NSLock *ts_mutex;
     GimbalController *gc;
     TrackSpotter *ts;
+    TrackDropper *dropper;
     
     int oldX;
     int oldY;
@@ -56,33 +57,57 @@
 -(void)sendUpdate {
     [mutex lock];
     
-    int fixedSpeed = 5;
+    double pi = 3.14159/4;
+    double speedStep = 64/pi;
+    double tolerance = pi/12;
     
-    double Xdiff = (int)self.x - oldX;
-    double Ydiff = (int)self.y - oldY;
-    //double Zdiff = (int)self.z - oldZ;
+    if(self.y > pi) {
+        self.y = pi;
+    } else if(self.y < -pi) {
+        self.y = -pi;
+    }
     
-    oldX = self.x;
-    oldY = self.y;
-    oldZ = self.z;
+    if(self.x > pi) {
+        self.x = pi;
+    } else if(self.x < -pi) {
+        self.x = -pi;
+    }
     
-    if(Xdiff > 0) {
-        [gc writeAzimuthSpeed:fixedSpeed];
-    } else if (Xdiff < 0) {
-        [gc writeAzimuthSpeed:-fixedSpeed];
+    if(self.x > tolerance) {
+        NSLog(@"Positive roll.\n");
+        
+        [gc writeAzimuthSpeed:-self.x*speedStep];
+        
+    } else if (self.x < -tolerance) {
+        
+        NSLog(@"Negative roll.\n");
+        
+        [gc writeAzimuthSpeed:-self.x*speedStep];
+        
     } else {
+        
+        NSLog(@"You've centered roll.\n");
+        
+        [gc writeAzimuthSpeed:0];
+        
+    }
+    
+    if (self.y > tolerance) {
+        
+        NSLog(@"Positive pitch.\n");
+        [gc writeElevationSpeed:-self.y*speedStep];
+        
+    } else if (self.y < -tolerance) {
+        
+        NSLog(@"Negative pitch.\n");
+        [gc writeElevationSpeed:-self.y*speedStep];
+        
+    } else {
+        NSLog(@"You've centered pitch\n");
         [gc writeElevationSpeed:0];
     }
     
-    if (Ydiff > 0) {
-        [gc writeElevationSpeed:fixedSpeed];
-    } else if (Ydiff < 0) {
-        [gc writeElevationSpeed:-fixedSpeed];
-    } else {
-        [gc writeElevationSpeed:0];
-    }
-    
-    [gc writeEnableTrackingMode:true];
+    [gc writeEnableTrackingMode:false];
     
     [gc sendGimbalMessage];
     
@@ -92,9 +117,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    currentTarget = nil;
-    
+        
     lc = [[LaserController alloc] init:SERVER_ADDR :DEST_PORT];
     
     // init motion manager
@@ -107,13 +130,16 @@
     gc = [[GimbalController alloc] init:SERVER_ADDR :DEST_PORT];
     
     ts = [[TrackSpotter alloc] init:SERVER_ADDR :DEST_PORT];
-    /*
-    [NSTimer scheduledTimerWithTimeInterval:0.25
+    
+    dropper = [[TrackDropper alloc] init:SERVER_ADDR :DEST_PORT];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(sendUpdate)
                                    userInfo:nil
                                     repeats:YES];
-    */
+    
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(sendMessage)
@@ -154,15 +180,28 @@
 {
     [ts_mutex lock];
     
-    if(currentTarget != nil) {
+    static bool sentOne = false;
+    
+    if(self.currentTarget != nil) {
         
-        [ts writeTarget:[currentTarget getID]];
-        [ts writePositionX:[currentTarget getX]];
-        [ts writePositionY:[currentTarget getY]];
-        [ts writePositionZ:[currentTarget getZ]];
+        //NSLog(@"Will send a message!!!!!\n");
+        
+        [ts writeTarget:[self.currentTarget getID]];
+        [ts writePositionX:[self.currentTarget getX]];
+        [ts writePositionY:[self.currentTarget getY]];
+        [ts writePositionZ:[self.currentTarget getZ]];
         
         [ts sendTrackUpdateMessage];
         
+        sentOne = true;
+        
+    } else if(sentOne) {
+        sentOne = false;
+        [dropper writeTarget:(uint8_t)1];
+        [dropper sendTrackDropMessage];
+        NSLog(@"Sent Target Drop");
+    } else {
+        //NSLog(@"Decided to not send a message.\n");
     }
     
     [ts_mutex unlock];
@@ -203,13 +242,14 @@
 
 - (void) setTargetNumber:(TrackedObject*)targ {
     [ts_mutex lock];
-    currentTarget = targ;
+    NSLog(@"\n\nSETTING TARGET NUMBER, is it nil? %i\n\n", targ == nil);
+    self.currentTarget = targ;
     [ts_mutex unlock];
 }
 
 -(TrackedObject*) getTargetNumber {
     [ts_mutex lock];
-    TrackedObject *cur = currentTarget;
+    TrackedObject *cur = self.currentTarget;
     [ts_mutex unlock];
     return cur;
 }
@@ -234,19 +274,19 @@
 // method for setting laser to standby
 - (IBAction)laserStandbyPress:(id)sender {
     [lc writeLaserMode:1];
-    [lc writeTarget:[currentTarget getID]];
+    [lc writeTarget:[self.currentTarget getID]];
     [lc sendLaserMessage];
 }
 
 - (IBAction)laserOffPress:(id)sender {
     [lc writeLaserMode:0];
-    [lc writeTarget:[currentTarget getID]];
+    [lc writeTarget:[self.currentTarget getID]];
     [lc sendLaserMessage];
 }
 
 - (IBAction)laserWarnPress:(id)sender {
     [lc writeLaserMode:2];
-    [lc writeTarget:[currentTarget getID]];
+    [lc writeTarget:[self.currentTarget getID]];
     [lc sendLaserMessage];
 }
 

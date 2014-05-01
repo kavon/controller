@@ -21,6 +21,8 @@
 @property double x;
 @property double y;
 @property double z;
+@property TrackedObject *currentTarget;
+
 
 // controller for gyro
 @property CMMotionManager* motionManager;

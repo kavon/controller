@@ -40,11 +40,11 @@
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
     // remove reference in the map, effectively "release"s its last strong reference.
     [messageList removeObjectForKey:[NSNumber numberWithLong:tag]];
-    NSLog(@"Successfully sent datagram tag %ld", tag);
+    //NSLog(@"Successfully sent datagram tag %ld", tag);
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
-    NSLog(@"ERROR: did not send datagram tag %ld", tag);
+    //NSLog(@"ERROR: did not send datagram tag %ld", tag);
 }
 
 
@@ -58,7 +58,7 @@
  *
  */
 -(void) send :(void*) message :(long) numBytes {
-    NSLog(@"Preparing to send datagram tag %ld", lastTag);
+    //NSLog(@"Preparing to send datagram tag %ld", lastTag);
     NSData *copy = [[NSData alloc] initWithBytes:message length:numBytes];
     [messageList setObject:copy forKey: [NSNumber numberWithLong:lastTag]];
     
@@ -69,7 +69,7 @@
     
     [socky sendData:copy toHost:hostName port:portNum withTimeout:-1 tag:lastTag];
     
-    NSLog(@"Requested to send datagram tag %ld", lastTag);
+    //NSLog(@"Requested to send datagram tag %ld", lastTag);
     
     lastTag += 1;
 }
